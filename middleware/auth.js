@@ -23,7 +23,7 @@ module.exports = {
   checkIfAdmin: (req, res, next) => {
     if (req.decoded.role !== 'admin') {
       return res.status(401).send({
-        message: 'Access Denied.Admin only allowed!'
+        message: 'Access Denied.Admin only allowed for this operation!'
       });
     }
     next();
