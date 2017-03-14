@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
   context: __dirname,
-  entry: "./src/index.js",
+  entry: './client/index.js',
   module: {
     loaders: [
       {
@@ -11,21 +12,20 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015'],
-          plugins: ['react-html-attrs', 'transform-class-properties',
-                     'transform-decorators-legacy']
+          plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
         }
       },
       {
-    test: /\.scss$/,
-    loader: ExtractTextPlugin.extract('css!sass')
-  }
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('css!sass')
+      }
     ]
   },
   output: {
     path: __dirname,
-    filename: "bundle.js"
+    filename: 'bundle.js'
   },
   plugins: [
-  new ExtractTextPlugin('src/assets/stylesheets/app.css', { allChunks: true })
-]
+    new ExtractTextPlugin('./client/assets/stylesheets/app.css', { allChunks: true })
+  ]
 };
