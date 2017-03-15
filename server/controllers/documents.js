@@ -32,14 +32,27 @@ class documentsControllers {
   }
 
   static listDocuments(req, res) {
-    Document.findAll({
-      where: {
-        role: 'public',
-      },
-      order: '"createdAt" DESC'
-    })
-    .then(docs => res.status(200).send(docs))
-    .catch(error => res.status(400).send(error));
+    if (req.query.limit >= 0 && req.query.offset >= 0) {
+      Document.findAll({ limit: req.query.limit, offset: req.query.offset })
+      .then((doc) => {
+        if (!doc) {
+          return res.status(404).send({
+            message: 'No users!',
+          });
+        }
+        return res.status(200).send(doc);
+      })
+        .catch(error => res.status(400).send(error));
+    } else {
+      Document.findAll({
+        where: {
+          role: 'public',
+        },
+        order: '"createdAt" DESC'
+      })
+      .then(docs => res.status(200).send(docs))
+      .catch(error => res.status(400).send(error));
+    }
   }
 
   static retrieveDocument(req, res) {
