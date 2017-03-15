@@ -36,6 +36,17 @@ describe('Validate Users', () => {
       });
     });
 
+    it('should paginate documents result', (done) => {
+      chai.request(server)
+      .get('/api/documents?limit=1&offset=0')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('array');
+        res.body.length.should.not.be.eql(0);
+        done();
+      });
+    });
+
     it('it should return a specific document', (done) => {
       chai.request(server)
       .get('/api/documents/2')
