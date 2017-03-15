@@ -38,6 +38,18 @@ describe('Validate Users', () => {
       });
     });
 
+    it('it should paginate user result', (done) => {
+      chai.request(server)
+      .get('/api/users?limit=1&offset=0')
+      .set('X-Access-Token', tokens.user)
+      .set('cookie', cookie)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('array');
+        done();
+      });
+    });
+
     it('it should ensure ONLY a logged in admin can view all the users information', (done) => {
       chai.request(server)
       .get('/api/users')
