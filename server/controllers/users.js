@@ -108,10 +108,27 @@ class usersController {
   }
 
   static listUsers(req, res) {
-    return User
-    .all()
-    .then(users => res.status(200).send(users))
-    .catch(error => res.status(401).send(error));
+    if (req.query.limit >= 0 && req.query.offset >= 0) {
+      // if (isNaN(parseInt(req.query.limit, 10)) || isNaN(parseInt(req.query.offset, 10))) {
+      //   return res.status(406).send({ message: 'Yo!Only numbers are accepted for offset and limit!' });
+      // } else {
+      User.findAll({ limit: req.query.limit, offset: req.query.offset })
+     .then((user) => {
+       if (!user) {
+         return res.status(404).send({
+           message: 'No users!',
+         });
+       }
+       return res.status(200).send(user);
+     })
+      .catch(error => res.status(400).send(error));
+      //}
+    } else {
+      return User
+      .all()
+      .then(users => res.status(200).send(users))
+      .catch(error => res.status(401).send(error));
+    }
   }
 
   static retrieveUser(req, res) {
