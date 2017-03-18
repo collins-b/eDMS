@@ -1,6 +1,17 @@
 const Role = require('../models').roles;
 
+/**
+ * rolesController class
+ */
 class rolesController {
+
+/**
+ * create
+ * @description creates roles
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static create(req, res) {
     Role.findOne({
       where: {
@@ -26,6 +37,13 @@ class rolesController {
     });
   }
 
+/**
+ * allRoles
+ * @description creates documents
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static allRoles(req, res) {
     return Role
     .all()
@@ -33,6 +51,13 @@ class rolesController {
     .catch(error => res.status(400).send(error));
   }
 
+/**
+ * retrieveRole
+ * @description gets a single role
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static retrieveRole(req, res) {
     Role.findById(req.params.id)
       .then((role) => {
@@ -46,6 +71,13 @@ class rolesController {
       .catch(error => res.status(400).send(error));
   }
 
+/**
+ * updateRole
+ * @description updates a given role
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static updateRole(req, res) {
     return Role
     .findById(req.params.id)
@@ -66,6 +98,13 @@ class rolesController {
     .catch(error => res.status(400).send(error));
   }
 
+/**
+ * deleteRole
+ * @description deletes a given role
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static deleteRole(req, res) {
     return Role
     .findById(req.params.id)
