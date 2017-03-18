@@ -316,7 +316,7 @@ class usersController {
 
 /**
  * searchUser
- * @description search user ny username
+ * @description search user by username
  * @param {object} req request
  * @param {object} res response
  * @returns {object} return an object
