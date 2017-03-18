@@ -245,7 +245,6 @@ describe('Validate Users', () => {
     });
   });
 
-
   describe('/OWNER documents', () => {
     it('should get all the owner\'s documents', (done) => {
       chai.request(server)
