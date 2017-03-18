@@ -1,6 +1,17 @@
 const Document = require('../models').documents;
-
+/**
+ * documentsControllers class
+ * @description holds methods related to documents manipulation
+ */
 class documentsControllers {
+
+/**
+ * create
+ * @description creates documents
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static create(req, res) {
     Document.findOne({
       where: {
@@ -31,6 +42,13 @@ class documentsControllers {
     });
   }
 
+/**
+ * listDocuments
+ * @description lists documents
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {array} return an array
+ */
   static listDocuments(req, res) {
     if (req.query.limit >= 0 && req.query.offset >= 0) {
       Document.findAll({ limit: req.query.limit, offset: req.query.offset })
@@ -55,6 +73,13 @@ class documentsControllers {
     }
   }
 
+/**
+ * retrieveDocument
+ * @description retrive a specific document by id
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static retrieveDocument(req, res) {
     Document.findById(req.params.id)
       .then((doc) => {
@@ -72,6 +97,13 @@ class documentsControllers {
       .catch(error => res.status(403).send(error));
   }
 
+/**
+ * updateDocument
+ * @description updates a document
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static updateDocument(req, res) {
     return Document
     .findById(req.params.id)
@@ -96,6 +128,13 @@ class documentsControllers {
     .catch(error => res.status(400).send(error));
   }
 
+/**
+ * deleteDocument
+ * @description delete a document
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static deleteDocument(req, res) {
     return Document
     .findById(req.params.id)
@@ -117,6 +156,13 @@ class documentsControllers {
     .catch(error => res.status(400).send(error));
   }
 
+/**
+ * findPrivateDocuments
+ * @description gets private documents
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static findPrivateDocuments(req, res) {
     Document.findAll({
       where: {
@@ -139,6 +185,13 @@ class documentsControllers {
       .catch(res.status(400).send({ message: 'Please,login first!' }));
   }
 
+/**
+ * listOwnerDocuments
+ * @description lists owner's documents
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static listOwnerDocuments(req, res) {
     Document.findAll({
       where: {
@@ -150,6 +203,13 @@ class documentsControllers {
     .catch(error => res.status(400).send(error));
   }
 
+/**
+ * searchDocument
+ * @description search documents
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {array} return an array
+ */
   static searchDocument(req, res) {
     Document.findAll({
       where: {
@@ -169,6 +229,13 @@ class documentsControllers {
     .catch(error => res.status(400).send(error));
   }
 
+/**
+ * searchDocumentByTitle
+ * @description search documents by title
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static searchDocumentByTitle(req, res) {
     Document.findAll({
       where: {
