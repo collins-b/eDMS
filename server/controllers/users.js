@@ -5,7 +5,18 @@ const _ = require('underscore');
 const bcrypt = require('bcrypt-nodejs');
 const nodemailer = require('nodemailer');
 
+/**
+ * usersController
+ */
 class usersController {
+
+/**
+ * login
+ * @description login a user
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {token} returns a token
+ */
   static login(req, res) {
     User.findOne({
       where: {
@@ -28,6 +39,13 @@ class usersController {
     });
   }
 
+/**
+ * logout
+ * @description logs out a user
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static logout(req, res) {
     req.session.destroy((err) => {
       if (err) {
@@ -38,6 +56,13 @@ class usersController {
     });
   }
 
+/**
+ * session
+ * @description checks active user sessions
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static session(req, res) {
     if (req.session.hasOwnProperty('user')) {
       return res.status(200).json({
@@ -49,6 +74,13 @@ class usersController {
     });
   }
 
+/**
+ * create
+ * @description creates users
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static create(req, res) {
     User.findOne({
       where: {
@@ -77,36 +109,42 @@ class usersController {
       } else if (!checkRoles.test(req.body.role)) {
         return res.status(406).send({ message: 'Yo!The system doesn\'t recognize that role!' });
       } else if (User.userName === req.body.userName) { return res.status(406).send({ message: 'Yo!No duplicates!' }); }
-    
       return User
-         .create({
-           firstName: req.body.firstName,
-           otherNames: req.body.otherNames,
-           email: req.body.email,
-           phone: req.body.phone,
-           userName: req.body.userName,
-           password: req.body.password,
-           role: req.body.role,
-         })
+      .create({
+        firstName: req.body.firstName,
+        otherNames: req.body.otherNames,
+        email: req.body.email,
+        phone: req.body.phone,
+        userName: req.body.userName,
+        password: req.body.password,
+        role: req.body.role,
+      })
 
-         .then((user) => {
-           const fieldsToToken = _.pick(user, 'id', 'userName', 'role');
-           const token = jwt.sign(fieldsToToken, process.env.SECRET_KEY, {
-             expiresIn: 604800
-           });
-           return res.status(200).send({
-             message: 'You have successfully registered to eDMS!',
-             token,
-             Name: `${user.firstName} ${''} ${user.otherNames}`,
-             Email: user.email,
-             Phone: user.phone,
-             userName: user.userName
-           });
-         })
-         .catch(error => res.status(400).send(error));
+      .then((user) => {
+        const fieldsToToken = _.pick(user, 'id', 'userName', 'role');
+        const token = jwt.sign(fieldsToToken, process.env.SECRET_KEY, {
+          expiresIn: 604800
+        });
+        return res.status(200).send({
+          message: 'You have successfully registered to eDMS!',
+          token,
+          Name: `${user.firstName} ${''} ${user.otherNames}`,
+          Email: user.email,
+          Phone: user.phone,
+          userName: user.userName
+        });
+      })
+      .catch(error => res.status(400).send(error));
     });
   }
 
+/**
+ * listUsers
+ * @description lists all registered users
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {array} return an array
+ */
   static listUsers(req, res) {
     if (req.query.limit >= 0 && req.query.offset >= 0) {
       User.findAll({ limit: req.query.limit, offset: req.query.offset })
@@ -127,6 +165,13 @@ class usersController {
     }
   }
 
+/**
+ * retrieveUser
+ * @description retrieves single user
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static retrieveUser(req, res) {
     return User
       .findById(req.params.id)
@@ -141,6 +186,13 @@ class usersController {
       .catch(error => res.status(400).send(error));
   }
 
+/**
+ * retrieveUserDocuments
+ * @description retrieves documents belonging to particular user
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static retrieveUserDocuments(req, res) {
     return User
       .findById(req.params.docId, {
@@ -160,6 +212,13 @@ class usersController {
       .catch(error => res.status(400).send(error));
   }
 
+/**
+ * updateUser
+ * @description updates user details
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static updateUser(req, res) {
     return User
     .findById(req.params.id)
@@ -185,6 +244,13 @@ class usersController {
     .catch(error => res.status(400).send(error));
   }
 
+/**
+ * deleteUser
+ * @description deletes a user
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static deleteUser(req, res) {
     return User
     .findById(req.params.docId)
@@ -202,6 +268,13 @@ class usersController {
     .catch(error => res.status(400).send(error));
   }
 
+/**
+ * forgot
+ * @description allows user to restore account
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static forgot(req, res) {
     let randomPassword;
     User.findOne({
@@ -241,6 +314,13 @@ class usersController {
     });
   }
 
+/**
+ * searchUser
+ * @description search user ny username
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
   static searchUser(req, res) {
     User.findAll({
       where: {
