@@ -25,17 +25,14 @@ class usersController {
     })
     .then((user) => {
       const fieldsToToken = _.pick(user, 'id', 'userName', 'role');
-      if (!user) {
-        return res.status(404).send({ message: 'No such user exists!' });
-      }
-      if (bcrypt.compareSync(req.body.password, user.password)) {
+      if (user && bcrypt.compareSync(req.body.password, user.password)) {
         const token = jwt.sign(user.get(fieldsToToken), process.env.SECRET_KEY, {
           expiresIn: 604800
         });
         req.session.user = user;
-        return res.status(200).send(token);
+        return res.status(200).send({ token });
       }
-      return res.status(502).send({ message: 'Access Denied!' });
+      return res.status(401).send({ message: 'Access Denied!Check your username or password' });
     });
   }
 
@@ -181,6 +178,7 @@ class usersController {
             message: 'No instance of user exists!',
           });
         }
+        user.password = null;
         return res.status(200).send(user);
       })
       .catch(error => res.status(400).send(error));
