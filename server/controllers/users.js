@@ -8,7 +8,7 @@ const nodemailer = require('nodemailer');
 /**
  * usersController
  */
-class usersController {
+class UsersController {
 
 /**
  * login
@@ -334,4 +334,4 @@ class usersController {
     .catch(error => res.status(400).send(error));
   }
 }
-export default usersController;
+export default UsersController;

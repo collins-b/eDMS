@@ -3,7 +3,7 @@ const Role = require('../models').roles;
 /**
  * rolesController class
  */
-class rolesController {
+class RolesController {
 
 /**
  * create
@@ -123,4 +123,4 @@ class rolesController {
   }
 }
 
-export default rolesController;
+export default RolesController;

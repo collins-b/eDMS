@@ -3,7 +3,7 @@ const Document = require('../models').documents;
  * documentsControllers class
  * @description holds methods related to documents manipulation
  */
-class documentsControllers {
+class DocumentsControllers {
 
 /**
  * create
@@ -253,4 +253,4 @@ class documentsControllers {
   }
 }
 
-export default documentsControllers;
+export default DocumentsControllers;
