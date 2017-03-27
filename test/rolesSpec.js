@@ -77,6 +77,22 @@ describe('Validate Users', () => {
           done();
         });
     });
+
+    it('it should not create role for missing fields.', (done) => {
+      const role = {
+        one: 'user',
+        two: 'content',
+      };
+      chai.request(server)
+        .post('/api/roles')
+        .send(role)
+        .set('X-Access-Token', tokens.user)
+        .set('cookie', cookie)
+        .end((err, res) => {
+          res.should.have.status(400);
+          done();
+        });
+    });
   });
 
   describe('GET /roles', () => {

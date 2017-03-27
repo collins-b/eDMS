@@ -24,7 +24,7 @@ class RolesController {
           message: 'Yo!No duplicates for role title allowed!',
         });
       }
-      if (!req.body.title || !req.body.accessLevel) {
+      if (req.body.title === '' || req.body.accessLevel === '') {
         return res.status(406).send({ message: 'Yo!Empty entries not required!' });
       }
       return Role

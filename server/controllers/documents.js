@@ -24,9 +24,9 @@ class DocumentsControllers {
           message: 'Yo!No duplicates for titles allowed!',
         });
       }
-      if (!req.body.title || !req.body.content || !req.body.owner || !req.body.role) {
+      if (req.body.title === '' || req.body.content === '' || req.body.owner === '' || req.body.role === '') {
         return res.status(406).send({ message: 'Yo!Empty entries not required!' });
-      } else if (((req.body.title).split(' ').length < 5)) {
+      } else if (req.body.title && ((req.body.title).split(' ').length < 5)) {
         return res.status(406).send({ message: 'Yo!A title should have a minimum of 5 words!' });
       }
       return Document
@@ -53,11 +53,6 @@ class DocumentsControllers {
     if (req.query.limit >= 0 && req.query.offset >= 0) {
       Document.findAll({ limit: req.query.limit, offset: req.query.offset })
       .then((doc) => {
-        if (!doc) {
-          return res.status(404).send({
-            message: 'No users!',
-          });
-        }
         return res.status(200).send(doc);
       })
         .catch(error => res.status(400).send(error));
@@ -88,7 +83,7 @@ class DocumentsControllers {
             message: 'No instance of document exists!',
           });
         } else if (doc.owner !== req.session.user.userName && doc.role === 'private') {
-          return res.status(401).send({
+          return res.status(403).send({
             message: 'You can\'t view a private document!',
           });
         }
@@ -113,7 +108,7 @@ class DocumentsControllers {
           message: 'Sorry,no existence of such a document!',
         });
       } else if (doc.owner !== req.session.user.userName) {
-        return res.status(401).send({
+        return res.status(402).send({
           message: 'You are not allowed to edit this document!',
         });
       }
@@ -199,8 +194,7 @@ class DocumentsControllers {
       },
       order: '"createdAt" DESC'
     })
-    .then(docs => res.status(200).send(docs))
-    .catch(error => res.status(400).send(error));
+    .then(docs => res.status(200).send(docs));
   }
 
 /**
@@ -225,8 +219,8 @@ class DocumentsControllers {
       },
       order: '"createdAt" DESC'
     })
-    .then(docs => res.status(200).send(docs))
-    .catch(error => res.status(400).send(error));
+    .then(docs => res.status(200).send(docs));
+    // .catch(error => res.status(400).send(error));
   }
 
 /**

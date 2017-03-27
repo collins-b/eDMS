@@ -60,6 +60,16 @@ describe('Validate Users', () => {
       });
     });
 
+    it('it should not return document for un-authenticated user', (done) => {
+      chai.request(server)
+      .get('/api/documents/2')
+      .set('X-Access-Token', tokens.user)
+      .end((err, res) => {
+        res.should.have.status(403);
+        done();
+      });
+    });
+
     it('it should ensure a message is returned if document is not found', (done) => {
       chai.request(server)
       .get('/api/documents/999999')
@@ -153,6 +163,24 @@ describe('Validate Users', () => {
           done();
         });
     });
+
+    it('it should not create document for missing fields.', (done) => {
+      const doc = {
+        one: 'this is title',
+        two: 'content',
+        three: 'Me',
+        four: 'public',
+      };
+      chai.request(server)
+        .post('/api/users/1/documents')
+        .send(doc)
+        .set('X-Access-Token', tokens.user)
+        .set('cookie', cookie)
+        .end((err, res) => {
+          res.should.have.status(400);
+          done();
+        });
+    });
   });
 
   describe('/PUT documents', () => {
@@ -221,11 +249,11 @@ describe('Validate Users', () => {
     it('it should search from documents.', (done) => {
       chai.request(server)
         .post('/api/documents/search')
-        .send({ terms: 'Lorem Ipsum' })
+        .send({ terms: 'Components' })
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('array');
-          expect(res.body[0].content).to.contain('Lorem Ipsum');
+          expect(res.body[0].content).to.contain('Components');
           done();
         });
     });
@@ -235,11 +263,11 @@ describe('Validate Users', () => {
     it('it should search documents by title.', (done) => {
       chai.request(server)
         .post('/api/documents/title')
-        .send({ title: 'dolorem' })
+        .send({ title: 'Tutorial' })
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('array');
-          expect(res.body[0].title).to.contain('dolorem');
+          expect(res.body[0].title).to.contain('Tutorial');
           done();
         });
     });
