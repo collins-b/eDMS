@@ -219,8 +219,8 @@ class DocumentsControllers {
       },
       order: '"createdAt" DESC'
     })
-    .then(docs => res.status(200).send(docs));
-    // .catch(error => res.status(400).send(error));
+    .then(docs => res.status(200).send(docs))
+    .catch(error => res.status(400).send(error));
   }
 
 /**
