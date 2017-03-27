@@ -1,8 +1,8 @@
 module.exports =
 [{
-  title: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit',
-  content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-            Lorem Ipsum has been`,
+  title: 'Components and Props in react Tutorial that I want share here today.',
+  content: `Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.
+  This is cool, right?You are going to love React.`,
   owner: 'johndoe',
   role: 'public',
   createdAt: new Date().toISOString(),
