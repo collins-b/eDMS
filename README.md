@@ -1,2 +1,2 @@
-# eDMS
+# eDMS https://travis-ci.org/andela-cwekesa/eDMS.svg?branch=chore/142486373/Troubleshoot-Travis [![Coverage Status](https://coveralls.io/repos/github/andela-cwekesa/eDMS/badge.svg?branch=chore%2F142486373%2FTroubleshoot-Travis)](https://coveralls.io/github/andela-cwekesa/eDMS?branch=chore%2F142486373%2FTroubleshoot-Travis)
 eDMS - Electronic Document Management System
