@@ -72,7 +72,7 @@ module.exports = (app) => {
   // Update a specific role
   app.put('/api/roles/:id', auth.authenticate, auth.checkIfAdmin, rolesController.updateRole);
 
-  // delete a specific role
+  // Deletes a specific role
   app.delete('/api/roles/:id', auth.authenticate, auth.checkIfAdmin, rolesController.deleteRole);
 
  // Login user
