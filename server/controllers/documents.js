@@ -120,7 +120,7 @@ class DocumentsControllers {
         .then(() => res.status(200).send(doc))
         .catch(error => res.status(400).send(error));
     })
-    .catch(error => res.status(400).send(error));
+    .catch(error => res.status(400).send({ Error: 'Document id should be integer' }));
   }
 
 /**
@@ -148,7 +148,7 @@ class DocumentsControllers {
         .then(() => res.status(204).send())
         .catch(error => res.status(400).send(error));
     })
-    .catch(error => res.status(400).send(error));
+    .catch(error => res.status(400).send({ Error: 'Document id should be integer' }));
   }
 
 /**

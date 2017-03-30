@@ -68,7 +68,7 @@ class RolesController {
         }
         return res.status(200).send(role);
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send({ Error: 'Role id should be a number' }));
   }
 
 /**
@@ -95,7 +95,7 @@ class RolesController {
         .then(() => res.status(200).send(role))
         .catch(error => res.status(400).send(error));
     })
-    .catch(error => res.status(400).send(error));
+    .catch(error => res.status(400).send({ Error: 'Role id should be a number' }));
   }
 
 /**
@@ -119,7 +119,7 @@ class RolesController {
         .then(() => res.status(204).send())
         .catch(error => res.status(400).send(error));
     })
-.catch(error => res.status(400).send(error));
+.catch(error => res.status(400).send({ Error: 'Role id should be a number' }));
   }
 }
 

@@ -30,7 +30,7 @@ class UsersController {
           expiresIn: 604800
         });
         req.session.user = user;
-        return res.status(200).send({ token });
+        return res.status(200).send(token);
       }
       return res.status(401).send({ message: 'Access Denied!Check your username or password' });
     });
@@ -181,7 +181,7 @@ class UsersController {
         user.password = null;
         return res.status(200).send(user);
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send({ Error: 'It seems like you have passed non-integer as user id.' }));
   }
 
 /**
@@ -239,7 +239,7 @@ class UsersController {
         .then(() => res.status(200).send(user))
         .catch(error => res.status(400).send(error));
     })
-    .catch(error => res.status(400).send(error));
+    .catch(error => res.status(400).send({ Error: 'It seems like you have passed non-integer as user id.' }));
   }
 
 /**
@@ -263,7 +263,7 @@ class UsersController {
         .then(() => res.status(204).send())
         .catch(error => res.status(400).send(error));
     })
-    .catch(error => res.status(400).send(error));
+    .catch(error => res.status(400).send({ Error: 'It seems like you have passed non-integer as user id.' }));
   }
 
 /**
