@@ -293,6 +293,17 @@ describe('Validate Users', () => {
           done();
         });
     });
+
+    it('it should search a document by query using title', (done) => {
+      chai.request(server)
+        .get('/api/search/documents?q=Components')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          expect(res.body[0].title).to.contain('Components');
+          done();
+        });
+    });
   });
 
   describe('/OWNER documents', () => {

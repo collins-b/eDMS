@@ -19,6 +19,8 @@ module.exports = (app) => {
  // Search a user by username
   app.post('/api/users/search', usersController.searchUser);
 
+  app.get('/api/search/users', usersController.searchUserByQuery);
+
   app.get('/api/users/session', auth.authenticate, auth.checkIfAdmin, usersController.session);
 
   // Creates a new document instance.
@@ -47,6 +49,8 @@ module.exports = (app) => {
 
   // Searches against documents (search by title)
   app.post('/api/documents/title', documentsControllers.searchDocumentByTitle);
+
+  app.get('/api/search/documents', documentsControllers.searchDocumentByQuery);
 
   // Find a specific document.
   app.get('/api/documents/:id', auth.authenticate, documentsControllers.retrieveDocument);

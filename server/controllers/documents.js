@@ -245,6 +245,21 @@ class DocumentsControllers {
     .then(docs => res.status(200).send(docs))
     .catch(error => res.status(400).send(error));
   }
+
+/**
+ * @description query search by title
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
+  static searchDocumentByQuery(req, res) {
+    Document.findAll({
+      where: {
+        title: { $iLike: `%${req.query.q}%` }
+      }
+    })
+      .then(doc => res.status(200).send(doc));
+  }
 }
 
 export default DocumentsControllers;

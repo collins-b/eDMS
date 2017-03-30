@@ -333,5 +333,21 @@ class UsersController {
     .then(docs => res.status(200).send(docs))
     .catch(error => res.status(400).send(error));
   }
+
+/**
+ * @description query search by username
+ * @param {object} req request
+ * @param {object} res response
+ * @returns {object} return an object
+ */
+  static searchUserByQuery(req, res) {
+    User.findAll({
+      where: {
+        userName: { $iLike: `%${req.query.q}%` }
+      }
+    })
+      .then(user => res.status(200).send(user));
+  }
 }
+
 export default UsersController;

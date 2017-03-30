@@ -433,5 +433,16 @@ describe('Validate Users', () => {
           done();
         });
     });
+
+    it('it should search a user by query using username', (done) => {
+      chai.request(server)
+        .get('/api/search/users?q=collo')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          expect(res.body[0].userName).to.contain('Collo');
+          done();
+        });
+    });
   });
 });
