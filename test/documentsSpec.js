@@ -207,6 +207,16 @@ describe('Validate Users', () => {
         done();
       });
     });
+
+    it('it should ensure a message is returned if document id is not an integer', (done) => {
+      chai.request(server)
+      .put('/api/documents/a')
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('Error').eql('Document id should be integer');
+        done();
+      });
+    });
   });
 
   describe('/DELETE documents', () => {
@@ -240,6 +250,18 @@ describe('Validate Users', () => {
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.have.property('message').eql('Sorry,no existence of such a document!');
+        done();
+      });
+    });
+
+    it('it should ensure a message is returned if document id passed is not an integer', (done) => {
+      chai.request(server)
+      .delete('/api/documents/a')
+      .set('X-Access-Token', tokens.user)
+      .set('cookie', cookie)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('Error').eql('Document id should be integer');
         done();
       });
     });

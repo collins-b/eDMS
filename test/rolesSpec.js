@@ -133,6 +133,18 @@ describe('Validate Users', () => {
         done();
       });
     });
+
+    it('it should ensure a message is returned if role id passed is not an integer', (done) => {
+      chai.request(server)
+      .get('/api/roles/a')
+      .set('X-Access-Token', tokens.user)
+      .set('cookie', cookie)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('Error').eql('Role id should be a number');
+        done();
+      });
+    });
   });
 
   describe('PUT /roles', () => {
@@ -161,6 +173,18 @@ describe('Validate Users', () => {
         done();
       });
     });
+
+    it('it should ensure a message is returned if role id passed is not an integer', (done) => {
+      chai.request(server)
+      .put('/api/roles/a')
+      .set('X-Access-Token', tokens.user)
+      .set('cookie', cookie)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('Error').eql('Role id should be a number');
+        done();
+      });
+    });
   });
 
   describe('DELETE /roles', () => {
@@ -184,6 +208,18 @@ describe('Validate Users', () => {
       .end((err, res) => {
         res.should.have.status(404);
         res.body.should.have.property('message').eql('Sorry,no existence of such a role!');
+        done();
+      });
+    });
+
+    it('it should ensure a message is returned if role id is not an integer', (done) => {
+      chai.request(server)
+      .delete('/api/roles/a')
+      .set('X-Access-Token', tokens.user)
+      .set('cookie', cookie)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('Error').eql('Role id should be a number');
         done();
       });
     });

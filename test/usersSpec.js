@@ -72,6 +72,18 @@ describe('Validate Users', () => {
       });
     });
 
+    it('it should return an error if non-integer is passed as user id', (done) => {
+      chai.request(server)
+      .get('/api/users/a')
+      .set('X-Access-Token', tokens.user)
+      .set('cookie', cookie)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('Error').eql('It seems like you have passed non-integer as user id.');
+        done();
+      });
+    });
+
     it('it should ensure a message is returned if user is not found', (done) => {
       chai.request(server)
       .get('/api/users/999999')
@@ -277,6 +289,16 @@ describe('Validate Users', () => {
       });
     });
 
+    it('it should ensure a message is returned if user id is not an integer', (done) => {
+      chai.request(server)
+      .put('/api/users/a')
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('Error').eql('It seems like you have passed non-integer as user id.');
+        done();
+      });
+    });
+
     it('it should ensure a message is returned if user is not found', (done) => {
       chai.request(server)
       .put('/api/users/999999')
@@ -309,6 +331,18 @@ describe('Validate Users', () => {
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.have.property('message').eql('Sorry,the user is not found!');
+        done();
+      });
+    });
+
+    it('it should ensure a message is returned if user id is non-integer', (done) => {
+      chai.request(server)
+      .delete('/api/users/a')
+      .set('X-Access-Token', tokens.user)
+      .set('cookie', cookie)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('Error').eql('It seems like you have passed non-integer as user id.');
         done();
       });
     });
