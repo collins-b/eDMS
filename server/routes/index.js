@@ -2,13 +2,14 @@ import usersController from '../controllers/users';
 import documentsControllers from '../controllers/documents';
 import rolesController from '../controllers/roles';
 const auth = require('../../middleware/auth');
+const path = require('path');
 
 module.exports = (app) => {
-  
-  // Default page
-  app.get('/api', (req, res) => res.status(200).send({
-    message: 'eDMS: A document handling system API ready to be consumed.',
-  }));
+
+  // API documentaion route
+  app.get('/docs', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../edms.html'));
+  });
 
   // Creates a new user.
   app.post('/api/users', usersController.create);
