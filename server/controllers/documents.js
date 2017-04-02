@@ -256,7 +256,8 @@ class DocumentsControllers {
     Document.findAll({
       where: {
         title: { $iLike: `%${req.query.q}%` }
-      }
+      },
+      attributes: { exclude: ['owner', 'id', 'docId', 'role', 'createdAt', 'updatedAt'] }
     })
       .then(doc => res.status(200).send(doc));
   }

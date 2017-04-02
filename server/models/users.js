@@ -24,9 +24,9 @@ module.exports = (sequelize, DataTypes) => {
       generateHashedPassword() {
         this.password = Bcrypt.hashSync(this.password, salt);
       },
-      validatePassword(password) {
-        return Bcrypt.compareSync(password, this.password);
-      }
+      // validatePassword(password) {
+      //   return Bcrypt.compareSync(password, this.password);
+      // }
     },
     hooks: {
       beforeCreate(user) {
