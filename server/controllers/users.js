@@ -116,7 +116,6 @@ class UsersController {
         password: req.body.password,
         role: req.body.role,
       })
-
       .then((user) => {
         const fieldsToToken = _.pick(user, 'id', 'userName', 'role');
         const token = jwt.sign(fieldsToToken, process.env.SECRET_KEY, {
@@ -144,7 +143,7 @@ class UsersController {
  */
   static listUsers(req, res) {
     if (req.query.limit >= 0 && req.query.offset >= 0) {
-      User.findAll({ limit: req.query.limit, offset: req.query.offset })
+      User.findAll({ limit: req.query.limit, offset: req.query.offset, attributes: { exclude: ['password', 'id', 'createdAt', 'updatedAt'] } })
      .then((user) => {
        if (!user) {
          return res.status(404).send({
@@ -155,7 +154,7 @@ class UsersController {
      })
       .catch(error => res.status(400).send(error));
     } else {
-      return User
+      User.findAll({ attributes: { exclude: ['password', 'id', 'createdAt', 'updatedAt'] } })
       .all()
       .then(users => res.status(200).send(users))
       .catch(error => res.status(401).send(error));
@@ -330,7 +329,7 @@ class UsersController {
       },
       order: '"createdAt" DESC'
     })
-    .then(docs => res.status(200).send(docs))
+    .then(user => res.status(200).send(user))
     .catch(error => res.status(400).send(error));
   }
 
