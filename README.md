@@ -63,4 +63,6 @@ PUT | /api/roles/:id | This endpoint updates a specific role
 DELETE | /api/roles/:id | This endpoint deletes a role
 
 **Documentation**
+VERB | Endpoint | Action
+------------ | -------- | ------
 GET | /docs | This endpoint displays the API documentation
