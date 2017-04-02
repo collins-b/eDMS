@@ -68,3 +68,5 @@ VERB | Endpoint | Action
 GET | /docs | This endpoint displays the API documentation
 
 Deployment can be found [here](https://edms-online.herokuapp.com/)
+
+Detailed documentation can be found [here](https://edms-online.herokuapp.com/docs)
