@@ -66,3 +66,5 @@ DELETE | /api/roles/:id | This endpoint deletes a role
 VERB | Endpoint | Action
 ------------ | -------- | ------
 GET | /docs | This endpoint displays the API documentation
+
+Deployment can be found [here](https://edms-online.herokuapp.com/)
