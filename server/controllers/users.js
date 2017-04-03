@@ -113,7 +113,7 @@ class UsersController {
       const apikey   = 'fde4ec632dbec2d37a07eb12b9c34b7468e0510e40cc1efd6c38bb7419cfb8b1';
       function sendMessage() {
         const to = req.body.phone;
-        const message = 'Hi' + req.body.firstName + ' .Welcome to eDMS.Note, Username:' + req.body.userName + ',' + 'Password:' + req.body.password;
+        const message = 'Hi ' + req.body.firstName + ' .Welcome to eDMS.Note, Username:' + req.body.userName + ',' + 'Password:' + req.body.password;
         const postData = querystring.stringify({
           username,
           to,
