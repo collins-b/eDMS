@@ -327,7 +327,8 @@ class UsersController {
           }
         ]
       },
-      order: '"createdAt" DESC'
+      order: '"createdAt" DESC',
+      attributes: { exclude: ['password', 'createdAt', 'updatedAt'] }
     })
     .then(user => res.status(200).send(user))
     .catch(error => res.status(400).send(error));
@@ -343,7 +344,8 @@ class UsersController {
     User.findAll({
       where: {
         userName: { $iLike: `%${req.query.q}%` }
-      }
+      },
+      attributes: { exclude: ['password', 'createdAt', 'updatedAt'] }
     })
       .then(user => res.status(200).send(user));
   }
