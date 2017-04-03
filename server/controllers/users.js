@@ -287,8 +287,8 @@ class UsersController {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'collinsmmoja@gmail.com',
-          pass: '*************'
+          user: 'nationalmcg@gmail.com',
+          pass: '*admin#2016'
         }
       });
       const mailOptions = {
