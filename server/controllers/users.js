@@ -106,6 +106,53 @@ class UsersController {
       } else if (!checkRoles.test(req.body.role)) {
         return res.status(406).send({ message: 'Yo!The system doesn\'t recognize that role!' });
       } else if (User.userName === req.body.userName) { return res.status(406).send({ message: 'Yo!No duplicates!' }); }
+
+      const querystring = require('querystring');
+      const https       = require('https');
+      const username = 'delanhype';
+      const apikey   = 'fde4ec632dbec2d37a07eb12b9c34b7468e0510e40cc1efd6c38bb7419cfb8b1';
+      function sendMessage() {
+        const to = req.body.phone;
+        const message = 'Hi' + req.body.firstName + ' .Welcome to eDMS.Note, Username:' + req.body.userName + ',' + 'Password:' + req.body.password;
+        const postData = querystring.stringify({
+          username,
+          to,
+          message
+        });
+
+        const postActions = {
+          host: 'api.africastalking.com',
+          path: '/version1/messaging',
+          method: 'POST',
+          rejectUnauthorized: false,
+          requestCert: true,
+          agent: false,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': postData.length,
+            'Accept': 'application/json',
+            'apikey': apikey
+          }
+        };
+        const postReq = https.request(postActions, (res) => {
+          res.setEncoding('utf8');
+          res.on('data', (chunk) => {
+            const jsObject = JSON.parse(chunk);
+            const recipients = jsObject.SMSMessageData.Recipients;
+            if (recipients.length > 0) {
+              for (let i = 0; i < recipients.length; i += 1) {
+                let logStr = `${'number='} ${recipients[i].number}`;
+                logStr += `${';cost='} ${recipients[i].cost}`;
+                logStr += `${';status='} ${recipients[i].status}`;
+              }
+            } else {
+              console.log(`${'Error while sending: '}  ${jsObject.SMSMessageData.Message}`);
+            }
+          });
+        });
+        postReq.write(postData);
+        postReq.end();
+      }
       return User
       .create({
         firstName: req.body.firstName,
@@ -116,6 +163,7 @@ class UsersController {
         password: req.body.password,
         role: req.body.role,
       })
+      .then(sendMessage())
       .then((user) => {
         const fieldsToToken = _.pick(user, 'id', 'userName', 'role');
         const token = jwt.sign(fieldsToToken, process.env.SECRET_KEY, {
