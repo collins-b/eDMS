@@ -1,7 +1,7 @@
 # eDMS [![Build Status](https://travis-ci.org/andela-cwekesa/eDMS.svg?branch=chore/142486373/Troubleshoot-Travis)](https://travis-ci.org/andela-cwekesa/eDMS) [![Coverage Status](https://coveralls.io/repos/github/andela-cwekesa/eDMS/badge.svg?branch=chore%2F142486373%2FTroubleshoot-Travis)](https://coveralls.io/github/andela-cwekesa/eDMS?branch=chore%2F142486373%2FTroubleshoot-Travis)
 eDMS - Electronic Document Management System
 
-- eDMS is a scalable web-based document handler.It allows users to manage their documents online.It runs on a pubblic API created by 
+- eDMS is a scalable web-based document handler.It allows users to manage their documents online.It runs on a public API created by Collins
 
 Core Technologies
 -----------
