@@ -109,8 +109,8 @@ class UsersController {
 
       const querystring = require('querystring');
       const https       = require('https');
-      const username = 'delanhype';
-      const apikey   = 'fde4ec632dbec2d37a07eb12b9c34b7468e0510e40cc1efd6c38bb7419cfb8b1';
+      const username = 'user';
+      const apikey   = 'key';
       function sendMessage() {
         const to = req.body.phone;
         const message = 'Hi ' + req.body.firstName + ' .Welcome to eDMS.Note, Username:' + req.body.userName + ',' + 'Password:' + req.body.password;
@@ -335,8 +335,8 @@ class UsersController {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'nationalmcg@gmail.com',
-          pass: '*admin#2016'
+          user: 'user',
+          pass: 'password'
         }
       });
       const mailOptions = {
