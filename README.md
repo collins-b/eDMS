@@ -31,7 +31,7 @@ GET | /api/users/:id | This endpoint gets details of a specific user
 PUT | /api/users/:id | This endpoint edits user's details
 DELETE | /api/users/id |This endpoint deletes a user from the system
 POST | /api/login | This endpoint signs a user into the system
-POST | /api/logout | This endpoint ends a user's session
+GET | /api/logout | This endpoint ends a user's session
 POST | /api/forgot/:email | This endpoint allows users to recover account incase of forgotten password
 
 
@@ -63,6 +63,7 @@ PUT | /api/roles/:id | This endpoint updates a specific role
 DELETE | /api/roles/:id | This endpoint deletes a role
 
 **Documentation**
+
 VERB | Endpoint | Action
 ------------ | -------- | ------
 GET | /docs | This endpoint displays the API documentation
