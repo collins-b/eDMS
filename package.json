@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "webpack-dev-server --inline --hot",
+    "start": "webpack-dev-server --inline --hot",
     "test": "babel-node ./node_modules/.bin/_mocha --require babel-register --recursive",
     "testy": "jest"
   },
