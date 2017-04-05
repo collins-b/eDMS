@@ -154,7 +154,7 @@ class UsersController {
      })
       .catch(error => res.status(400).send(error));
     } else {
-      User.findAll({ attributes: { exclude: ['password', 'id', 'createdAt', 'updatedAt'] } })
+      User.findAll({ attributes: { exclude: ['password', 'createdAt', 'updatedAt'] } })
       .all()
       .then(users => res.status(200).send(users))
       .catch(error => res.status(401).send(error));

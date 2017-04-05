@@ -107,11 +107,11 @@ class DocumentsControllers {
         return res.status(404).send({
           message: 'Sorry,no existence of such a document!',
         });
-      } else if (doc.owner !== req.session.user.userName) {
+      } /* else if (doc.owner !== req.session.user.userName) {
         return res.status(402).send({
           message: 'You are not allowed to edit this document!',
         });
-      }
+      }*/
       return doc
         .update({
           title: req.body.title || doc.title,
@@ -120,7 +120,7 @@ class DocumentsControllers {
         .then(() => res.status(200).send(doc))
         .catch(error => res.status(400).send(error));
     })
-    .catch(error => res.status(400).send({ Error: 'Document id should be integer' }));
+    // .catch(error => res.status(400).send({ Error: 'Document id should be integer' }));
   }
 
 /**
