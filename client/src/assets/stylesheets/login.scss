@@ -1,0 +1,232 @@
+//colors
+$color_havelock_blue_approx: #4a89dc;
+$color_gallery_approx: #eee;
+$color_storm_dust_approx: #636363;
+$alabaster: #fafafa;
+$color_cararra_approx: #ebebeb;
+$black_14_902: rgba(0,0,0,0.14902);
+$black_9_804: rgba(0,0,0,0.09804);
+$color_tapa_approx: #757575;
+$color_mountain_mist_approx: #999;
+$white: #fff;
+$color_cerulean_blue_approx: #3160b6;
+$color_mariner_50_approx: rgba(39, 110, 204, .5);
+$color_royal_blue_approx: #357bd8;
+$white_25: rgba(255, 255, 255, 0.25);
+$color_suva_gray_approx: #888;
+
+//fonts
+$font_0: Helvetica;
+
+//@extend-elements
+//original selectors
+//input:focus ~label, input.used ~label
+%extend_1 {
+	top: -20px;
+	//Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+	transform: scale(.75);
+	left: -2px;
+	color: $color_havelock_blue_approx;
+}
+
+//original selectors
+//.bar:before, .bar:after
+%extend_2 {
+	content: '';
+	height: 2px;
+	width: 0;
+	bottom: 1px;
+	position: absolute;
+	background: $color_havelock_blue_approx;
+	//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+	transition: all 0.2s ease;
+}
+
+
+* {
+	//Instead of the line below you could use @include box-sizing($bs)
+	box-sizing: border-box;
+}
+body {
+	font-family: $font_0;
+	background: $color_gallery_approx;
+}
+hgroup {
+	text-align: center;
+	margin-top: 4em;
+}
+h1 {
+	font-weight: 300;
+	color: $color_storm_dust_approx;
+}
+h3 {
+	font-weight: 300;
+	color: $color_havelock_blue_approx;
+}
+form {
+	width: 380px;
+	margin: 4em auto;
+	padding: 3em 2em 2em;
+	background: $alabaster;
+	border: 1px solid $color_cararra_approx;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: $black_14_902 0 1px 1px 0,$black_9_804 0 1px 2px 0;
+}
+.group {
+	position: relative;
+	margin-bottom: 45px;
+}
+input {
+	font-size: 18px;
+	padding: 10px 10px 10px 5px;
+	display: block;
+	background: $alabaster;
+	color: $color_storm_dust_approx;
+	width: 100%;
+	border: none;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 0;
+	border-bottom: 1px solid $color_tapa_approx;
+}
+label {
+	color: $color_mountain_mist_approx;
+	font-size: 18px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 5px;
+	top: 10px;
+	//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+	transition: all 0.2s ease;
+}
+.bar {
+	position: relative;
+	display: block;
+	width: 100%;
+	&:before {
+		@extend %extend_2;
+		left: 50%;
+	}
+	&:after {
+		@extend %extend_2;
+		right: 50%;
+	}
+}
+.highlight {
+	position: absolute;
+	height: 60%;
+	width: 100px;
+	top: 25%;
+	left: 0;
+	pointer-events: none;
+	opacity: 0.5;
+}
+@keyframes inputHighlighter {
+	from {
+		background: $color_havelock_blue_approx;
+	}
+	to {
+		width: 0;
+		background: transparent;
+	}
+}
+.button {
+	position: relative;
+	display: inline-block;
+	padding: 12px 24px;
+	margin: .3em 0 1em 0;
+	width: 100%;
+	vertical-align: middle;
+	color: $white;
+	font-size: 16px;
+	line-height: 20px;
+	text-align: center;
+	letter-spacing: 1px;
+	background: transparent;
+	border: 0;
+	border-bottom: 2px solid $color_cerulean_blue_approx;
+	cursor: pointer;
+	//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+	transition: all 0.15s ease;
+	&:focus {
+		outline: 0;
+	}
+}
+.buttonBlue {
+	background: $color_havelock_blue_approx;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 1px 1px 0 $color_mariner_50_approx;
+	&:hover {
+		background: $color_royal_blue_approx;
+	}
+}
+.ripples {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background: transparent;
+	&.is-active .ripplesCircle {
+		animation: ripples .4s ease-in;
+	}
+}
+.ripplesCircle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	//Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	width: 0;
+	height: 0;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 50%;
+	background: $white_25;
+}
+@keyframes ripples {
+	0% {
+		opacity: 0;
+	}
+	25% {
+		opacity: 1;
+	}
+	100% {
+		width: 200%;
+		padding-bottom: 200%;
+		opacity: 0;
+	}
+}
+footer {
+	text-align: center;
+	p {
+		color: $color_suva_gray_approx;
+		font-size: 13px;
+		letter-spacing: .4px;
+	}
+	a {
+		color: $color_havelock_blue_approx;
+		text-decoration: none;
+		//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+		transition: all .2s ease;
+		&:hover {
+			color: $color_storm_dust_approx;
+			text-decoration: underline;
+		}
+		&:focus {
+			outline: none;
+		}
+	}
+	img {
+		width: 80px;
+		//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+		transition: all .2s ease;
+		&:hover {
+			opacity: .83;
+		}
+		&:focus {
+			outline: none;
+		}
+	}
+}
