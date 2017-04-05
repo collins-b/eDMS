@@ -45,7 +45,6 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^3.2.1",
-    "selenium-webdriver": "^3.3.0",
     "superagent": "^3.5.2",
     "sweetalert2": "^6.4.4",
     "validator": "^7.0.0",
