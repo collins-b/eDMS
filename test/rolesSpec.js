@@ -32,7 +32,7 @@ describe('Validate Users', () => {
       .set('X-Access-Token', tokens.user)
       .set('cookie', cookie)
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(201);
         res.body.should.be.a('object');
         res.body.should.have.property('title');
         res.body.should.have.property('accessLevel');

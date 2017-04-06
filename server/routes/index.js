@@ -25,7 +25,7 @@ module.exports = (app) => {
   app.get('/api/users/session', auth.authenticate, auth.checkIfAdmin, usersController.session);
 
   // Creates a new document instance.
-  app.post('/api/users/:docId/documents', auth.authenticate, documentsControllers.create);
+  app.post('/api/users/:userId/documents', auth.authenticate, documentsControllers.create);
 
   // Find a specific user.
   app.get('/api/users/:id', auth.authenticate, auth.checkIfAdmin, usersController.retrieveUser);
@@ -34,7 +34,7 @@ module.exports = (app) => {
   app.put('/api/users/:id', usersController.updateUser);
 
   // Delete a specific user.
-  app.delete('/api/users/:docId', auth.authenticate, auth.checkIfAdmin, usersController.deleteUser);
+  app.delete('/api/users/:userId', auth.authenticate, auth.checkIfAdmin, usersController.deleteUser);
 
   // Find matching instances of document.
   app.get('/api/documents', documentsControllers.listDocuments);
@@ -42,14 +42,8 @@ module.exports = (app) => {
   // Find owner's private documents
   app.get('/api/documents/private', auth.authenticate, documentsControllers.findPrivateDocuments);
 
- // Find owner's documents
-  app.get('/api/documents/myDocuments', auth.authenticate, documentsControllers.listOwnerDocuments);
-
  // Searches against documents (global search)
-  app.post('/api/documents/search', documentsControllers.searchDocument);
-
-  // Searches against documents (search by title)
-  app.post('/api/documents/title', documentsControllers.searchDocumentByTitle);
+  app.get('/api/documents', documentsControllers.searchDocument);
 
   app.get('/api/search/documents', documentsControllers.searchDocumentByQuery);
 
@@ -63,7 +57,7 @@ module.exports = (app) => {
   app.delete('/api/documents/:id', auth.authenticate, documentsControllers.deleteDocument);
 
   // Find all documents belonging to the user.
-  app.get('/api/users/:docId/documents', usersController.retrieveUserDocuments);
+  app.get('/api/users/:userId/documents', usersController.retrieveUserDocuments);
 
   // Creates a new role
   app.post('/api/roles', auth.authenticate, auth.checkIfAdmin, rolesController.create);
@@ -87,5 +81,5 @@ module.exports = (app) => {
   app.get('/api/logout', auth.authenticate, usersController.logout);
 
  // Resets password / recover account
-  app.post('/api/forgot/:email', usersController.forgot);
+  app.post('/api/users/:reset', usersController.forgot);
 };

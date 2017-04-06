@@ -101,7 +101,7 @@ describe('Validate Users', () => {
       .get('/api/users/1/documents')
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.should.be.a('object');
+        res.body.should.be.a('array');
         done();
       });
     });
@@ -132,7 +132,7 @@ describe('Validate Users', () => {
       .post('/api/users')
       .send(user)
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(201);
         res.body.should.be.a('object');
         res.body.should.have.property('message').eql('You have successfully registered to eDMS!');
         done();
@@ -283,7 +283,6 @@ describe('Validate Users', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
-        res.body.firstName.should.be.eql('Wecs');
         res.body.email.should.be.eql('wecs@microhype.com');
         done();
       });
@@ -402,7 +401,7 @@ describe('Validate Users', () => {
   describe('/FORGOT users', () => {
     it('Should auto-generate password to a user for recovery', (done) => {
       chai.request(server)
-      .post('/api/forgot/wecs@microhype.com')
+      .post('/api/users/wecs@microhype.com')
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('message').eql('An auto-generated password has been send to your email address.Use it to login and change ASAP.');
@@ -412,7 +411,7 @@ describe('Validate Users', () => {
 
     it('Should warn if no email is found in the system', (done) => {
       chai.request(server)
-      .post('/api/forgot/noreply@gmail.com')
+      .post('/api/users/noreply@gmail.com')
       .end((err, res) => {
         res.should.have.status(404);
         res.body.should.have.property('message').eql('User with that email address doesn\'t exist!');

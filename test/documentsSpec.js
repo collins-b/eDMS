@@ -91,7 +91,7 @@ describe('Validate Users', () => {
       .set('X-Access-Token', tokens.user)
       .set('cookie', cookie)
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(201);
         res.body.should.be.a('object');
         res.body.should.have.property('title');
         res.body.should.have.property('content');
@@ -270,7 +270,7 @@ describe('Validate Users', () => {
   describe('/SEARCH documents', () => {
     it('it should search from documents.', (done) => {
       chai.request(server)
-        .post('/api/documents/search')
+        .get('/api/documents?q=Components')
         .send({ terms: 'Components' })
         .end((err, res) => {
           res.should.have.status(200);
@@ -282,18 +282,6 @@ describe('Validate Users', () => {
   });
 
   describe('/SEARCH documents by title', () => {
-    it('it should search documents by title.', (done) => {
-      chai.request(server)
-        .post('/api/documents/title')
-        .send({ title: 'Tutorial' })
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('array');
-          expect(res.body[0].title).to.contain('Tutorial');
-          done();
-        });
-    });
-
     it('it should search a document by query using title', (done) => {
       chai.request(server)
         .get('/api/search/documents?q=Components')
@@ -303,21 +291,6 @@ describe('Validate Users', () => {
           expect(res.body[0].title).to.contain('Components');
           done();
         });
-    });
-  });
-
-  describe('/OWNER documents', () => {
-    it('should get all the owner\'s documents', (done) => {
-      chai.request(server)
-      .get('/api/documents/myDocuments')
-      .set('X-Access-Token', tokens.user)
-      .set('cookie', cookie)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('array');
-        res.body.length.should.not.be.eql(0);
-        done();
-      });
     });
   });
 });

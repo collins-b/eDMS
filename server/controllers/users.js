@@ -121,12 +121,12 @@ class UsersController {
         const token = jwt.sign(fieldsToToken, process.env.SECRET_KEY, {
           expiresIn: 604800
         });
-        return res.status(200).send({
+        return res.status(201).send({
           message: 'You have successfully registered to eDMS!',
           token,
-          Name: `${user.firstName} ${''} ${user.otherNames}`,
-          Email: user.email,
-          Phone: user.phone,
+          name: `${user.firstName} ${''} ${user.otherNames}`,
+          email: user.email,
+          phone: user.phone,
           userName: user.userName
         });
       })
@@ -192,7 +192,7 @@ class UsersController {
  */
   static retrieveUserDocuments(req, res) {
     return User
-      .findById(req.params.docId, {
+      .findById(req.params.userId, {
         include: [{
           model: Document,
           as: 'documents',
@@ -204,7 +204,7 @@ class UsersController {
             message: 'No instance of user exists!',
           });
         }
-        return res.status(200).send(user);
+        return res.status(200).send(user.documents);
       })
       .catch(error => res.status(400).send(error));
   }
@@ -235,7 +235,12 @@ class UsersController {
           password: req.body.password || user.password,
           role: req.body.role || user.role,
         })
-        .then(() => res.status(200).send(user))
+        .then(() => res.status(200).send({
+          name: `${user.firstName} ${''} ${user.otherNames}`,
+          email: user.email,
+          phone: user.phone,
+          userName: user.userName
+        }))
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send({ Error: 'It seems like you have passed non-integer as user id.' }));
@@ -250,7 +255,7 @@ class UsersController {
  */
   static deleteUser(req, res) {
     return User
-    .findById(req.params.docId)
+    .findById(req.params.userId)
     .then((user) => {
       if (!user) {
         return res.status(400).send({
@@ -276,7 +281,7 @@ class UsersController {
     let randomPassword;
     User.findOne({
       where: {
-        email: req.params.email
+        email: req.params.reset
       }
     })
     .then((user) => {

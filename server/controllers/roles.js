@@ -32,7 +32,7 @@ class RolesController {
           title: req.body.title,
           accessLevel: req.body.accessLevel
         })
-        .then(role => res.status(200).send(role))
+        .then(role => res.status(201).send(role))
         .catch(error => res.status(400).send(error));
     });
   }

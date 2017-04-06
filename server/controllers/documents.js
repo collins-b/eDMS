@@ -35,9 +35,9 @@ class DocumentsControllers {
           content: req.body.content,
           owner: req.body.owner,
           role: req.body.role,
-          docId: req.params.docId
+          docId: req.params.userId
         })
-        .then(document => res.status(200).send(document))
+        .then(document => res.status(201).send(document))
         .catch(error => res.status(400).send(error));
     });
   }
@@ -108,7 +108,7 @@ class DocumentsControllers {
           message: 'Sorry,no existence of such a document!',
         });
       } else if (doc.owner !== req.session.user.userName) {
-        return res.status(402).send({
+        return res.status(403).send({
           message: 'You are not allowed to edit this document!',
         });
       }
@@ -139,7 +139,7 @@ class DocumentsControllers {
           message: 'Sorry,no existence of such a document!',
         });
       } else if (doc.owner !== req.session.user.userName && doc.owner !== 'admin') {
-        return res.status(401).send({
+        return res.status(403).send({
           message: 'You are not allowed to delete this document!',
         });
       }
@@ -177,7 +177,7 @@ class DocumentsControllers {
         }
         return res.status(200).send(doc);
       })
-      .catch(res.status(400).send({ message: 'Please,login first!' }));
+      .catch(res.status(400).send({ message: 'You don\'t have private documents' }));
   }
 
 /**
@@ -209,33 +209,10 @@ class DocumentsControllers {
       where: {
         $or: [
           {
-            title: { $iLike: `%${req.body.terms}%` },
+            title: { $iLike: `%${req.query.q}%` },
           },
           {
-            content: { $iLike: `%${req.body.terms}%` },
-          },
-        ],
-        role: 'public',
-      },
-      order: '"createdAt" DESC'
-    })
-    .then(docs => res.status(200).send(docs))
-    .catch(error => res.status(400).send(error));
-  }
-
-/**
- * searchDocumentByTitle
- * @description search documents by title
- * @param {object} req request
- * @param {object} res response
- * @returns {object} return an object
- */
-  static searchDocumentByTitle(req, res) {
-    Document.findAll({
-      where: {
-        $or: [
-          {
-            title: { $iLike: `%${req.body.title}%` },
+            content: { $iLike: `%${req.query.q}%` },
           },
         ],
         role: 'public',
