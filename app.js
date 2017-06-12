@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const jwt = require('jsonwebtoken');
+require('newrelic');
 
 process.env.SECRET_KEY = 'collinsmmoja';
 
