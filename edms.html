@@ -1,0 +1,632 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>eDMS</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><style>@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}body{color:black;background:white;font:400 14px / 1.42 'Roboto',Helvetica,sans-serif}header{border-bottom:1px solid #f2f2f2;margin-bottom:12px}h1,h2,h3,h4,h5{color:black;margin:12px 0}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:0;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}.triple h1 .permalink,.triple h2 .permalink,.triple h3 .permalink,.triple h4 .permalink,.triple h5 .permalink{opacity:.15}.triple h1:hover .permalink,.triple h2:hover .permalink,.triple h3:hover .permalink,.triple h4:hover .permalink,.triple h5:hover .permalink{opacity:.15}h1{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:36px}h2{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:30px}h3{font-size:100%;text-transform:uppercase}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}a{color:#428bca;text-decoration:none}li p{margin:0}hr.split{border:0;height:1px;width:100%;padding-left:6px;margin:12px auto;background-image:linear-gradient(to right, rgba(0,0,0,0) 20%, rgba(0,0,0,0.2) 51.4%, rgba(255,255,255,0.2) 51.4%, rgba(255,255,255,0) 80%)}dl dt{float:left;width:130px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:150px}blockquote{color:rgba(0,0,0,0.5);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto}pre code{color:black;background-color:transparent;padding:0;border:none}code{color:#444;background-color:#f5f5f5;font:'Inconsolata',monospace;padding:1px 4px;border:1px solid #cfcfcf;border-radius:3px}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #e6e6e6}.text-muted{opacity:.5}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:200 36px 'Raleway',Helvetica,sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:black;background-color:#f0f6fb;border-left:4px solid #428bca}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#428bca}.warning{color:black;background-color:#fbf1f0;border-left:4px solid #c9302c}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#c9302c}header{margin-top:24px}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:black;opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #d9d9d9;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul>li{margin:0}nav ul>li:first-child{margin-top:-12px}nav ul>li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav>div>div>ul>li:first-child>a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:14px;padding:3px 7px;font-size:12px;color:#000;background-color:#f2f2f2;border-radius:10px;margin:-2px 0}.badge.get{color:#70bbe1;background-color:#d9edf7}.badge.head{color:#70bbe1;background-color:#d9edf7}.badge.options{color:#70bbe1;background-color:#d9edf7}.badge.put{color:#f0db70;background-color:#fcf8e3}.badge.patch{color:#f0db70;background-color:#fcf8e3}.badge.post{color:#93cd7c;background-color:#dff0d8}.badge.delete{color:#ce8383;background-color:#f2dede}.collapse-button{float:right}.collapse-button .close{display:none;color:#428bca;cursor:pointer}.collapse-button .open{color:#428bca;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:'';display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%}.container-fluid.triple nav{width:16.5%;padding-right:1px}.container-fluid.triple .row .content{position:relative;margin-left:16.5%;padding-left:24px}.middle:before,.middle:after{content:'';display:table}.middle:after{clear:both}.middle{box-sizing:border-box;width:51.5%;padding-right:12px}.right{box-sizing:border-box;float:right;width:48.5%;padding-left:12px}.right a{color:#428bca}.right h1,.right h2,.right h3,.right h4,.right h5,.right p,.right div{color:white}.right pre{background-color:#1d1f21;border:1px solid #1d1f21}.right pre code{color:#c5c8c6}.right .description{margin-top:12px}.triple .resource-heading{font-size:125%}.definition{margin-top:12px;margin-bottom:12px}.definition .method{font-weight:bold}.definition .method.get{color:#2e8ab8}.definition .method.head{color:#2e8ab8}.definition .method.options{color:#2e8ab8}.definition .method.post{color:#56b82e}.definition .method.put{color:#b8a22e}.definition .method.patch{color:#b8a22e}.definition .method.delete{color:#b82e2e}.definition .uri{word-break:break-all;word-wrap:break-word}.definition .hostname{opacity:.5}.example-names{background-color:#eee;padding:12px;border-radius:6px}.example-names .tab-button{cursor:pointer;color:black;border:1px solid #ddd;padding:6px;margin-left:12px}.example-names .tab-button.active{background-color:#d5d5d5}.right .example-names{background-color:#444}.right .example-names .tab-button{color:white;border:1px solid #666;border-radius:6px}.right .example-names .tab-button.active{background-color:#5e5e5e}#nav-background{position:fixed;left:0;top:0;bottom:0;width:16.5%;padding-right:14.4px;background-color:#fbfbfb;border-right:1px solid #f0f0f0;z-index:-1}#right-panel-background{position:absolute;right:-12px;top:-12px;bottom:-12px;width:48.6%;background-color:#333;z-index:-1}@media (max-width:1200px){nav{width:198px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:169.4px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content,.container-fluid.triple .row .content{margin-left:auto;margin-right:auto;width:95%}#nav-background{display:none}#right-panel-background{width:48.6%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.5);background-color:#f2f2f2;text-decoration:none !important;border-top:1px solid #d9d9d9;border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #d9d9d9;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#f2f2f2;border-bottom:1px solid #d9d9d9;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.triple .content .resource-group{padding:0;border:none}.triple .content .resource-group h2.group-heading,.triple .content .resource-group .heading a{margin:0 0 12px 0;border:1px solid #d9d9d9}nav .resource-group .heading a{padding:12px;margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:6px 12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;overflow:hidden}.action h4.action-heading .name{float:right;font-weight:normal;padding:6px 0}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px;display:inline-block}.action h4.action-heading .method.get{color:#fff;background-color:#337ab7}.action h4.action-heading .method.head{color:#fff;background-color:#337ab7}.action h4.action-heading .method.options{color:#fff;background-color:#337ab7}.action h4.action-heading .method.put{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.patch{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.post{color:#fff;background-color:#5cb85c}.action h4.action-heading .method.delete{color:#fff;background-color:#d9534f}.action h4.action-heading code{color:#444;background-color:#f5f5f5;border-color:#cfcfcf;font-weight:normal;word-break:break-all;display:inline-block;margin-top:2px}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#bce8f1}.action.get h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.head{border-color:#bce8f1}.action.head h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.options{border-color:#bce8f1}.action.options h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.post{border-color:#d6e9c6}.action.post h4.action-heading{color:#5cb85c;background:#dff0d8;border-bottom-color:#d6e9c6}.action.put{border-color:#faebcc}.action.put h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.patch{border-color:#faebcc}.action.patch h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.delete{border-color:#ebccd1}.action.delete h4.action-heading{color:#d9534f;background:#f2dede;border-bottom-color:#ebccd1}</style></head><body class="preload"><div id="nav-background"></div><div class="container-fluid triple"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#top">Overview</a></div><div class="collapse-content"><ul><li><a href="#header-documentation-guidelines">Documentation guidelines</a></li><li><a href="#header-user">User</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#">Resource Group</a></div><div class="collapse-content"><ul><li><a href="#create-a-new-user-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create A New User</a></li><li><a href="#login-a-user-post"><span class="badge post"><i class="fa fa-plus"></i></span>Login A User</a></li><li><a href="#user-logout-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>User Logout</a></li><li><a href="#active-users-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Active Users</a></li><li><a href="#users-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Users</a></li><li><a href="#users-get-1"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Users</a></li><li><a href="#users-get-2"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Users</a></li><li><a href="#users-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Users</a></li><li><a href="#users-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Users</a></li><li><a href="#users-post"><span class="badge post"><i class="fa fa-plus"></i></span>Users</a></li><li><a href="#documents-post"><span class="badge post"><i class="fa fa-plus"></i></span>Documents</a></li><li><a href="#documents-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Documents</a></li><li><a href="#documents-get-1"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Documents</a></li><li><a href="#documents-post-1"><span class="badge post"><i class="fa fa-plus"></i></span>Documents</a></li><li><a href="#documents-post-2"><span class="badge post"><i class="fa fa-plus"></i></span>Documents</a></li><li><a href="#documents-post-3"><span class="badge post"><i class="fa fa-plus"></i></span>Documents</a></li><li><a href="#documents-get-2"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Documents</a></li><li><a href="#documents-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Documents</a></li><li><a href="#documents-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Documents</a></li><li><a href="#documents-get-3"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Documents</a></li><li><a href="#roles-post"><span class="badge post"><i class="fa fa-plus"></i></span>Roles</a></li><li><a href="#roles-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Roles</a></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="https://edms-online.herokuapp.com">https://edms-online.herokuapp.com</a></p></nav><div class="content"><div id="right-panel-background"></div><div class="middle"><header><h1 id="top">eDMS</h1></header></div><div class="right"><h5>API Endpoint</h5><a href="https://edms-online.herokuapp.com">https://edms-online.herokuapp.com</a></div><div class="middle"><p>eDMS is a web app that handles <a href="http://documents.It">documents.It</a> allows you to manage your documents online</p>
+<p>API V1 <a href="https://github.com/andela-cwekesa/edms">https://github.com/andela-cwekesa/edms</a></p>
+<h1 id="header-documentation-guidelines">Documentation guidelines <a class="permalink" href="#header-documentation-guidelines" aria-hidden="true">¶</a></h1>
+<p>eDMS being a RESTful API, it explicitly takes advantage of HTTP methodologies defined by the RFC 2616 protocol. It uses GET to retrieve a resource; PUT to change the state of or update a resource, which can be an object, file or block; POST to create that resource; and DELETE to remove it.</p>
+<p>All end-points have been authenticated but end-points for login,signup and fetching public documents.</p>
+<h1 id="header-user">User <a class="permalink" href="#header-user" aria-hidden="true">¶</a></h1>
+<p>Resources related to users in the API</p>
+</div><div class="middle"><section id="" class="resource-group"><h2 class="group-heading">Resource Group <a href="#" class="permalink">&para;</a></h2></section></div><div class="middle"><div id="create-a-new-user" class="resource"><h3 class="resource-heading">Create A New User <a href="#create-a-new-user" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/user</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">firstName</span>": <span class="hljs-value"><span class="hljs-string">"Mimi"</span></span>,
+  "<span class="hljs-attribute">otherNames</span>": <span class="hljs-value"><span class="hljs-string">"Mzuri"</span></span>,
+  "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"254722222222"</span></span>,
+  "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"mimi@gmail.com"</span></span>,
+  "<span class="hljs-attribute">userName</span>": <span class="hljs-value"><span class="hljs-string">"Colloto"</span></span>,
+  "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"Collo20Qwerty"</span></span>,
+  "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"user"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"You have successfully registered to eDMS!"</span></span>,
+  "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlck5hbWUiOiJtaW1pIiwicm9sZSI6InVzZXIiLCJpYXQiOjE0OTA4ODc5NTUsImV4cCI6MTQ5MTQ5Mjc1NX0.Or29TIfE-JnnC4nCAifDIo2rZIEIQLncDEFE4lU2Zho"</span></span>,
+  "<span class="hljs-attribute">Name</span>": <span class="hljs-value"><span class="hljs-string">"Mzuri Mimi"</span></span>,
+  "<span class="hljs-attribute">Email</span>": <span class="hljs-value"><span class="hljs-string">"mimi@gmail.com"</span></span>,
+  "<span class="hljs-attribute">Phone</span>": <span class="hljs-value"><span class="hljs-string">"254722222222"</span></span>,
+  "<span class="hljs-attribute">userName</span>": <span class="hljs-value"><span class="hljs-string">"mimi"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="create-a-new-user-post" class="action post"><h4 class="action-heading"><div class="name">Create A New User</div><a href="#create-a-new-user-post" class="method post">POST</a><code class="uri">/api/user</code></h4><p>This end-point creates a new user.A user provide his/her details.Fields are validated to prevent invalid data.For example password strength and email.</p>
+<p>The following credentials are mandatory:</p>
+<ul>
+<li>
+<p>First Name</p>
+</li>
+<li>
+<p>Other Names</p>
+</li>
+<li>
+<p>Phone Number</p>
+</li>
+<li>
+<p>Email Address</p>
+</li>
+<li>
+<p>Username</p>
+</li>
+<li>
+<p>Password</p>
+</li>
+</ul>
+<p>Note: Password need to be between 6-20 characters and contain at least one numeric,one uppercase and one lowercase letter.</p>
+</div></div><hr class="split"><div class="middle"><div id="login-a-user" class="resource"><h3 class="resource-heading">Login A User <a href="#login-a-user" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/login</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">userName</span>": <span class="hljs-value"><span class="hljs-string">"Colloto"</span></span>,
+  "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"Collo20Qwerty"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+      <span class="hljs-string">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiSm9obiIsIm90aGVyTmFtZXMiOiJEb2UiLCJlbWFpbCI6ImpvaG5kb2VAbWljcm9oeXBlLmNvbSIsInBob25lIjoiMjU0NzAwMDAwMDAwIiwidXNlck5hbWUiOiJqb2huZG9lIiwicGFzc3dvcmQiOiIkMmEkMTAkRVZSYXU5UDNkSUpFa29CeFNZOE5DT1dyMWJDNnBhNUc4N0dLOURTWUI4V0FuOXVOLmFaMUMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVkQXQiOiIyMDE3LTAzLTI3VDEyOjM1OjEwLjYyNVoiLCJ1cGRhdGVkQXQiOiIyMDE3LTAzLTI3VDEyOjM1OjEwLjYyNVoiLCJpYXQiOjE0OTA4ODg2NjIsImV4cCI6MTQ5MTQ5MzQ2Mn0._Ab4Unh572T0DMx1-kUY3jj7O5F6kSx-4H6Bm5WmBzA"</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="login-a-user-post" class="action post"><h4 class="action-heading"><div class="name">Login A User</div><a href="#login-a-user-post" class="method post">POST</a><code class="uri">/api/login</code></h4><p>This endpoint serves to login existing users. It expects <code>username</code> and <code>password</code>.</p>
+</div></div><hr class="split"><div class="middle"><div id="user-logout" class="resource"><h3 class="resource-heading">User Logout <a href="#user-logout" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/logout</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">Message</span>": <span class="hljs-value"><span class="hljs-string">"You have signed out successfully."</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="user-logout-get" class="action get"><h4 class="action-heading"><div class="name">User Logout</div><a href="#user-logout-get" class="method get">GET</a><code class="uri">/api/logout</code></h4><p>This endpoint logs out a user.The session ends/expires after this.</p>
+</div></div><hr class="split"><div class="middle"><div id="active-users" class="resource"><h3 class="resource-heading">Active Users <a href="#active-users" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/users/session</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
+    message: <span class="hljs-string">'Active users available'</span>
+  }</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="active-users-get" class="action get"><h4 class="action-heading"><div class="name">Active Users</div><a href="#active-users-get" class="method get">GET</a><code class="uri">/api/users/session</code></h4><p>This endpoint allows admin to vcheck there are active/logged in users</p>
+</div></div><hr class="split"><div class="middle"><div id="users" class="resource"><h3 class="resource-heading">Users <a href="#users" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/users</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">firstName</span>": <span class="hljs-value"><span class="hljs-string">"John"</span></span>,
+    "<span class="hljs-attribute">otherNames</span>": <span class="hljs-value"><span class="hljs-string">"Doe"</span></span>,
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"johndoe@microhype.com"</span></span>,
+    "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"254700000000"</span></span>,
+    "<span class="hljs-attribute">userName</span>": <span class="hljs-value"><span class="hljs-string">"johndoe"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"admin"</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:10.625Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:10.625Z"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+    "<span class="hljs-attribute">firstName</span>": <span class="hljs-value"><span class="hljs-string">"Wecs"</span></span>,
+    "<span class="hljs-attribute">otherNames</span>": <span class="hljs-value"><span class="hljs-string">"that"</span></span>,
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"wecs@microhype.com"</span></span>,
+    "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"254700000000"</span></span>,
+    "<span class="hljs-attribute">userName</span>": <span class="hljs-value"><span class="hljs-string">"Collo"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"admin"</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:14.151Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:14.932Z"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
+    "<span class="hljs-attribute">firstName</span>": <span class="hljs-value"><span class="hljs-string">"React"</span></span>,
+    "<span class="hljs-attribute">otherNames</span>": <span class="hljs-value"><span class="hljs-string">"Redux"</span></span>,
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"react@redux.com"</span></span>,
+    "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"254729508040"</span></span>,
+    "<span class="hljs-attribute">userName</span>": <span class="hljs-value"><span class="hljs-string">"react"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"user"</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T18:42:04.304Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T18:42:04.304Z"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+    "<span class="hljs-attribute">firstName</span>": <span class="hljs-value"><span class="hljs-string">"Yes"</span></span>,
+    "<span class="hljs-attribute">otherNames</span>": <span class="hljs-value"><span class="hljs-string">"I can"</span></span>,
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"yes@yes.com"</span></span>,
+    "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"254729508040"</span></span>,
+    "<span class="hljs-attribute">userName</span>": <span class="hljs-value"><span class="hljs-string">"qwerty"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"user"</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T18:51:07.992Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T18:51:07.992Z"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
+    "<span class="hljs-attribute">firstName</span>": <span class="hljs-value"><span class="hljs-string">"Mzuri"</span></span>,
+    "<span class="hljs-attribute">otherNames</span>": <span class="hljs-value"><span class="hljs-string">"Mimi"</span></span>,
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"mimi@gmail.com"</span></span>,
+    "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"72443904"</span></span>,
+    "<span class="hljs-attribute">userName</span>": <span class="hljs-value"><span class="hljs-string">"mimi"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"user"</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-30T15:32:35.512Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-30T15:32:35.512Z"</span>
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="users-get" class="action get"><h4 class="action-heading"><div class="name">Users</div><a href="#users-get" class="method get">GET</a><code class="uri">/api/users</code></h4><p>This endpoint fetches all users and displays user details</p>
+</div></div><hr class="split"><div class="middle"><div id="users-1" class="resource"><h3 class="resource-heading">Users <a href="#users-1" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/users/:id</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+  "<span class="hljs-attribute">firstName</span>": <span class="hljs-value"><span class="hljs-string">"Yes"</span></span>,
+  "<span class="hljs-attribute">otherNames</span>": <span class="hljs-value"><span class="hljs-string">"I can"</span></span>,
+  "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"yes@yes.com"</span></span>,
+  "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"254729508040"</span></span>,
+  "<span class="hljs-attribute">userName</span>": <span class="hljs-value"><span class="hljs-string">"qwerty"</span></span>,
+  "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+  "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"user"</span></span>,
+  "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T18:51:07.992Z"</span></span>,
+  "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T18:51:07.992Z"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="users-get-1" class="action get"><h4 class="action-heading"><div class="name">Users</div><a href="#users-get-1" class="method get">GET</a><code class="uri">/api/users/:id</code></h4><p>This end point gets a specific user by id</p>
+</div></div><hr class="split"><div class="middle"><div id="users-2" class="resource"><h3 class="resource-heading">Users <a href="#users-2" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/users/search</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
+    "<span class="hljs-attribute">firstName</span>": <span class="hljs-value"><span class="hljs-string">"Mzuri"</span></span>,
+    "<span class="hljs-attribute">otherNames</span>": <span class="hljs-value"><span class="hljs-string">"Mimi"</span></span>,
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"mimi@gmail.com"</span></span>,
+    "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"72443904"</span></span>,
+    "<span class="hljs-attribute">userName</span>": <span class="hljs-value"><span class="hljs-string">"mimi"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"user"</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-30T15:32:35.512Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-30T15:32:35.512Z"</span>
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="users-get-2" class="action get"><h4 class="action-heading"><div class="name">Users</div><a href="#users-get-2" class="method get">GET</a><code class="uri">/api/users/search</code></h4><p>This endpoint searches a user by username</p>
+</div></div><hr class="split"><div class="middle"><div id="users-3" class="resource"><h3 class="resource-heading">Users <a href="#users-3" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/users/:id</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+  "<span class="hljs-attribute">firstName</span>": <span class="hljs-value"><span class="hljs-string">"Yes"</span></span>,
+  "<span class="hljs-attribute">otherNames</span>": <span class="hljs-value"><span class="hljs-string">"I can"</span></span>,
+  "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"yes@yes.com"</span></span>,
+  "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"254729508040"</span></span>,
+  "<span class="hljs-attribute">userName</span>": <span class="hljs-value"><span class="hljs-string">"Qwerty1"</span></span>,
+  "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"user"</span></span>,
+  "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T18:51:07.992Z"</span></span>,
+  "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-30T16:36:49.642Z"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="users-put" class="action put"><h4 class="action-heading"><div class="name">Users</div><a href="#users-put" class="method put">PUT</a><code class="uri">/api/users/:id</code></h4><p>This endpoint updates a user’s details</p>
+</div></div><hr class="split"><div class="middle"><div id="users-4" class="resource"><h3 class="resource-heading">Users <a href="#users-4" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/users/:docId</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">204</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="users-delete" class="action delete"><h4 class="action-heading"><div class="name">Users</div><a href="#users-delete" class="method delete">DELETE</a><code class="uri">/api/users/:docId</code></h4><p>This endpoint deletes a user</p>
+</div></div><hr class="split"><div class="middle"><div id="users-5" class="resource"><h3 class="resource-heading">Users <a href="#users-5" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/forgot/:email</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">appication/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{ message: <span class="hljs-string">'An auto-generated password has been send to your email address.Use it to login and change ASAP.'</span> }
+Resources related to documents <span class="hljs-keyword">in</span> the API</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="users-post" class="action post"><h4 class="action-heading"><div class="name">Users</div><a href="#users-post" class="method post">POST</a><code class="uri">/api/forgot/:email</code></h4><p>This endpoint allows users to recover their account by resetting password after forgetting.</p>
+</div></div><hr class="split"><div class="middle"><div id="documents" class="resource"><h3 class="resource-heading">Documents <a href="#documents" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/users/:docId/documents</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">9</span></span>,
+  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"This is my  preparation yes my preparation"</span></span>,
+  "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"So what can I tell you today about my preparation?"</span></span>,
+  "<span class="hljs-attribute">owner</span>": <span class="hljs-value"><span class="hljs-string">"johndoe"</span></span>,
+  "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"private"</span></span>,
+  "<span class="hljs-attribute">docId</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-30T17:07:20.927Z"</span></span>,
+  "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-30T17:07:20.927Z"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="documents-post" class="action post"><h4 class="action-heading"><div class="name">Documents</div><a href="#documents-post" class="method post">POST</a><code class="uri">/api/users/:docId/documents</code></h4><p>This endpoint allows user to create a document.Note: document title should be unique and not less than 5 characters</p>
+</div></div><hr class="split"><div class="middle"><div id="documents-1" class="resource"><h3 class="resource-heading">Documents <a href="#documents-1" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/documents</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"The Navbar and Login Components"</span></span>,
+    "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"We should see if everything is wiring up properly in the browser at this point. But before we do, we'll need the "</span></span>,
+    "<span class="hljs-attribute">owner</span>": <span class="hljs-value"><span class="hljs-string">"react"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"public"</span></span>,
+    "<span class="hljs-attribute">docId</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T21:38:20.674Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T21:38:20.674Z"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"How to Use Axios as Your HTTP Client communication"</span></span>,
+    "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"How to Use Axios as Your HTTP Clients"</span></span>,
+    "<span class="hljs-attribute">owner</span>": <span class="hljs-value"><span class="hljs-string">"Colloto"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"public"</span></span>,
+    "<span class="hljs-attribute">docId</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T17:23:32.390Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-29T21:52:12.857Z"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Persistent Login Topic In Action Now"</span></span>,
+    "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"So far we have just used the default route provided by Express for an SPA application, and not defined any route handling for Express"</span></span>,
+    "<span class="hljs-attribute">owner</span>": <span class="hljs-value"><span class="hljs-string">"test"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"public"</span></span>,
+    "<span class="hljs-attribute">docId</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T19:48:03.852Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T19:48:03.852Z"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Components and Props in react Tutorial that I want share here today."</span></span>,
+    "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.\n  This is cool, right?You are going to love React."</span></span>,
+    "<span class="hljs-attribute">owner</span>": <span class="hljs-value"><span class="hljs-string">"johndoe"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"public"</span></span>,
+    "<span class="hljs-attribute">docId</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:13.392Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:13.392Z"</span>
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="documents-get" class="action get"><h4 class="action-heading"><div class="name">Documents</div><a href="#documents-get" class="method get">GET</a><code class="uri">/api/documents</code></h4><p>This endpoint finds matching instances of document.Note:public documents only</p>
+</div></div><hr class="split"><div class="middle"><div id="documents-2" class="resource"><h3 class="resource-heading">Documents <a href="#documents-2" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/documents/myDocuments</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">9</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"This is my  preparation yes my preparation"</span></span>,
+    "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"So what can I tell you today about my preparation?"</span></span>,
+    "<span class="hljs-attribute">owner</span>": <span class="hljs-value"><span class="hljs-string">"johndoe"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"private"</span></span>,
+    "<span class="hljs-attribute">docId</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-30T17:07:20.927Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-30T17:07:20.927Z"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Components and Props in react Tutorial that I want share here today."</span></span>,
+    "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.\n  This is cool, right?You are going to love React."</span></span>,
+    "<span class="hljs-attribute">owner</span>": <span class="hljs-value"><span class="hljs-string">"johndoe"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"public"</span></span>,
+    "<span class="hljs-attribute">docId</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:13.392Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:13.392Z"</span>
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="documents-get-1" class="action get"><h4 class="action-heading"><div class="name">Documents</div><a href="#documents-get-1" class="method get">GET</a><code class="uri">/api/documents/myDocuments</code></h4><ul>
+<li>This endpoint finds owner’s documents</li>
+</ul>
+</div></div><hr class="split"><div class="middle"><div id="documents-3" class="resource"><h3 class="resource-heading">Documents <a href="#documents-3" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/documents/private</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">9</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"This is my  preparation yes my preparation"</span></span>,
+    "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"So what can I tell you today about my preparation?"</span></span>,
+    "<span class="hljs-attribute">owner</span>": <span class="hljs-value"><span class="hljs-string">"johndoe"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"private"</span></span>,
+    "<span class="hljs-attribute">docId</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-30T17:07:20.927Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-30T17:07:20.927Z"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">8</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Creating a Higher Order Component"</span></span>,
+    "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"We are going to create a higher order component, which will allow us pass some functionality down to "</span></span>,
+    "<span class="hljs-attribute">owner</span>": <span class="hljs-value"><span class="hljs-string">"react"</span></span>,
+    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"private"</span></span>,
+    "<span class="hljs-attribute">docId</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T21:49:51.997Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T21:49:51.997Z"</span>
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="documents-post-1" class="action post"><h4 class="action-heading"><div class="name">Documents</div><a href="#documents-post-1" class="method post">POST</a><code class="uri">/api/documents/private</code></h4><ul>
+<li>This endpoint lists owner’s private documents only.Note and admin can access all private documents</li>
+</ul>
+</div></div><hr class="split"><div class="middle"><div id="documents-4" class="resource"><h3 class="resource-heading">Documents <a href="#documents-4" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/documents/search</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">7</span>,
+    <span class="hljs-string">"title"</span>: <span class="hljs-string">"The Navbar and Login Components"</span>,
+    <span class="hljs-string">"content"</span>: <span class="hljs-string">"We should see if everything is wiring up properly in the browser at this point. But before we do, we'll need the "</span>,
+    <span class="hljs-string">"owner"</span>: <span class="hljs-string">"react"</span>,
+    <span class="hljs-string">"role"</span>: <span class="hljs-string">"public"</span>,
+    <span class="hljs-string">"docId"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">"createdAt"</span>: <span class="hljs-string">"2017-03-28T21:38:20.674Z"</span>,
+    <span class="hljs-string">"updatedAt"</span>: <span class="hljs-string">"2017-03-28T21:38:20.674Z"</span>
+  },
+  {
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">3</span>,
+    <span class="hljs-string">"title"</span>: <span class="hljs-string">"Components and Props in react Tutorial that I want share here today."</span>,
+    <span class="hljs-string">"content"</span>: <span class="hljs-string">"Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.\n  This is cool, right?You are going to love React."</span>,
+    <span class="hljs-string">"owner"</span>: <span class="hljs-string">"johndoe"</span>,
+    <span class="hljs-string">"role"</span>: <span class="hljs-string">"public"</span>,
+    <span class="hljs-string">"docId"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">"createdAt"</span>: <span class="hljs-string">"2017-03-27T12:35:13.392Z"</span>,
+    <span class="hljs-string">"updatedAt"</span>: <span class="hljs-string">"2017-03-27T12:35:13.392Z"</span>
+  }
+]
+This is a response <span class="hljs-keyword">for</span> <span class="hljs-string">``</span><span class="hljs-string">`components`</span><span class="hljs-string">``</span></code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="documents-post-2" class="action post"><h4 class="action-heading"><div class="name">Documents</div><a href="#documents-post-2" class="method post">POST</a><code class="uri">/api/documents/search</code></h4><ul>
+<li>This performs a global search against document</li>
+</ul>
+</div></div><hr class="split"><div class="middle"><div id="documents-5" class="resource"><h3 class="resource-heading">Documents <a href="#documents-5" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/documents/title</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+{
+  <span class="hljs-string">"id"</span>: <span class="hljs-number">7</span>,
+  <span class="hljs-string">"title"</span>: <span class="hljs-string">"The Navbar and Login Components"</span>,
+  <span class="hljs-string">"content"</span>: <span class="hljs-string">"We should see if everything is wiring up properly in the browser at this point. But before we do, we'll need the "</span>,
+  <span class="hljs-string">"owner"</span>: <span class="hljs-string">"react"</span>,
+  <span class="hljs-string">"role"</span>: <span class="hljs-string">"public"</span>,
+  <span class="hljs-string">"docId"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-string">"createdAt"</span>: <span class="hljs-string">"2017-03-28T21:38:20.674Z"</span>,
+  <span class="hljs-string">"updatedAt"</span>: <span class="hljs-string">"2017-03-28T21:38:20.674Z"</span>
+}
+]
+This is a response <span class="hljs-keyword">for</span> <span class="hljs-string">``</span><span class="hljs-string">`Navbar`</span><span class="hljs-string">``</span></code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="documents-post-3" class="action post"><h4 class="action-heading"><div class="name">Documents</div><a href="#documents-post-3" class="method post">POST</a><code class="uri">/api/documents/title</code></h4><ul>
+<li>Searches against documents (search by title)</li>
+</ul>
+</div></div><hr class="split"><div class="middle"><div id="documents-6" class="resource"><h3 class="resource-heading">Documents <a href="#documents-6" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/documents/:id</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
+  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"The Navbar and Login Components"</span></span>,
+  "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"We should see if everything is wiring up properly in the browser at this point. But before we do, we'll need the "</span></span>,
+  "<span class="hljs-attribute">owner</span>": <span class="hljs-value"><span class="hljs-string">"react"</span></span>,
+  "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"public"</span></span>,
+  "<span class="hljs-attribute">docId</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T21:38:20.674Z"</span></span>,
+  "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T21:38:20.674Z"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="documents-get-2" class="action get"><h4 class="action-heading"><div class="name">Documents</div><a href="#documents-get-2" class="method get">GET</a><code class="uri">/api/documents/:id</code></h4><ul>
+<li>Find a specific document.</li>
+</ul>
+</div></div><hr class="split"><div class="middle"><div id="documents-7" class="resource"><h3 class="resource-heading">Documents <a href="#documents-7" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/documents/:id</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
+  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"The Navbar and Login Components that I want share today."</span></span>,
+  "<span class="hljs-attribute">content</span>": <span class="hljs-value"><span class="hljs-string">"We should see if everything is wiring up properly in the browser at this point. But before we do, we'll need the "</span></span>,
+  "<span class="hljs-attribute">owner</span>": <span class="hljs-value"><span class="hljs-string">"react"</span></span>,
+  "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"public"</span></span>,
+  "<span class="hljs-attribute">docId</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T21:38:20.674Z"</span></span>,
+  "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-28T21:38:20.674Z"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="documents-put" class="action put"><h4 class="action-heading"><div class="name">Documents</div><a href="#documents-put" class="method put">PUT</a><code class="uri">/api/documents/:id</code></h4><ul>
+<li>Update document attributes.</li>
+</ul>
+</div></div><hr class="split"><div class="middle"><div id="documents-8" class="resource"><h3 class="resource-heading">Documents <a href="#documents-8" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/documents/:id</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">204</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="documents-delete" class="action delete"><h4 class="action-heading"><div class="name">Documents</div><a href="#documents-delete" class="method delete">DELETE</a><code class="uri">/api/documents/:id</code></h4><ul>
+<li>Delete a specific document</li>
+</ul>
+</div></div><hr class="split"><div class="middle"><div id="documents-9" class="resource"><h3 class="resource-heading">Documents <a href="#documents-9" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/users/:docId/documents</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-string">"firstName"</span>: <span class="hljs-string">"John"</span>,
+  <span class="hljs-string">"otherNames"</span>: <span class="hljs-string">"Doe"</span>,
+  <span class="hljs-string">"email"</span>: <span class="hljs-string">"johndoe@microhype.com"</span>,
+  <span class="hljs-string">"phone"</span>: <span class="hljs-string">"254700000000"</span>,
+  <span class="hljs-string">"userName"</span>: <span class="hljs-string">"johndoe"</span>,
+  <span class="hljs-string">"role"</span>: <span class="hljs-string">"admin"</span>,
+  <span class="hljs-string">"createdAt"</span>: <span class="hljs-string">"2017-03-27T12:35:10.625Z"</span>,
+  <span class="hljs-string">"updatedAt"</span>: <span class="hljs-string">"2017-03-27T12:35:10.625Z"</span>,
+  <span class="hljs-string">"documents"</span>: [
+    {
+      <span class="hljs-string">"id"</span>: <span class="hljs-number">3</span>,
+      <span class="hljs-string">"title"</span>: <span class="hljs-string">"Components and Props in react Tutorial that I want share here today."</span>,
+      <span class="hljs-string">"content"</span>: <span class="hljs-string">"Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.\n  This is cool, right?You are going to love React."</span>,
+      <span class="hljs-string">"owner"</span>: <span class="hljs-string">"johndoe"</span>,
+      <span class="hljs-string">"role"</span>: <span class="hljs-string">"public"</span>,
+      <span class="hljs-string">"docId"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-string">"createdAt"</span>: <span class="hljs-string">"2017-03-27T12:35:13.392Z"</span>,
+      <span class="hljs-string">"updatedAt"</span>: <span class="hljs-string">"2017-03-27T12:35:13.392Z"</span>
+    },
+    {
+      <span class="hljs-string">"id"</span>: <span class="hljs-number">9</span>,
+      <span class="hljs-string">"title"</span>: <span class="hljs-string">"This is my  preparation yes my preparation"</span>,
+      <span class="hljs-string">"content"</span>: <span class="hljs-string">"So what can I tell you today about my preparation?"</span>,
+      <span class="hljs-string">"owner"</span>: <span class="hljs-string">"johndoe"</span>,
+      <span class="hljs-string">"role"</span>: <span class="hljs-string">"private"</span>,
+      <span class="hljs-string">"docId"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-string">"createdAt"</span>: <span class="hljs-string">"2017-03-30T17:07:20.927Z"</span>,
+      <span class="hljs-string">"updatedAt"</span>: <span class="hljs-string">"2017-03-30T17:07:20.927Z"</span>
+    }
+  ]
+}
+Resources related to roles</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="documents-get-3" class="action get"><h4 class="action-heading"><div class="name">Documents</div><a href="#documents-get-3" class="method get">GET</a><code class="uri">/api/users/:docId/documents</code></h4><ul>
+<li>Find all documents belonging to the user.</li>
+</ul>
+</div></div><hr class="split"><div class="middle"><div id="roles" class="resource"><h3 class="resource-heading">Roles <a href="#roles" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/roles</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
+    "<span class="hljs-attribute">accessLevel</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:10.643Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:10.643Z"</span>
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="roles-post" class="action post"><h4 class="action-heading"><div class="name">Roles</div><a href="#roles-post" class="method post">POST</a><code class="uri">/api/roles</code></h4><ul>
+<li>Creates a new role</li>
+</ul>
+</div></div><hr class="split"><div class="middle"><div id="roles-1" class="resource"><h3 class="resource-heading">Roles <a href="#roles-1" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://edms-online.herokuapp.com</span>/api/roles</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span><span class="tab-button">200</span><span class="tab-button">200</span><span class="tab-button">204</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
+    "<span class="hljs-attribute">accessLevel</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:10.643Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:10.643Z"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Admin"</span></span>,
+    "<span class="hljs-attribute">accessLevel</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:10.643Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:10.643Z"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Guest"</span></span>,
+    "<span class="hljs-attribute">accessLevel</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:13.770Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:13.770Z"</span>
+  </span>},
+]</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
+    "<span class="hljs-attribute">accessLevel</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:10.643Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:10.643Z"</span>
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
+    "<span class="hljs-attribute">accessLevel</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
+    "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:10.643Z"</span></span>,
+    "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">"2017-03-27T12:35:10.643Z"</span>
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="roles-get" class="action get"><h4 class="action-heading"><div class="name">Roles</div><a href="#roles-get" class="method get">GET</a><code class="uri">/api/roles</code></h4><ul>
+<li>Displays all roles</li>
+</ul>
+</div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 31 Mar 2017</p></div></div></div></div><script>/* eslint-env browser */
+/* eslint quotes: [2, "single"] */
+'use strict';
+
+/*
+  Determine if a string ends with another string.
+*/
+function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+
+/*
+  Get a list of direct child elements by class name.
+*/
+function childrenByClass(element, name) {
+  var filtered = [];
+
+  for (var i = 0; i < element.children.length; i++) {
+    var child = element.children[i];
+    var classNames = child.className.split(' ');
+    if (classNames.indexOf(name) !== -1) {
+      filtered.push(child);
+    }
+  }
+
+  return filtered;
+}
+
+/*
+  Get an array [width, height] of the window.
+*/
+function getWindowDimensions() {
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.body,
+      x = w.innerWidth || e.clientWidth || g.clientWidth,
+      y = w.innerHeight || e.clientHeight || g.clientHeight;
+
+  return [x, y];
+}
+
+/*
+  Collapse or show a request/response example.
+*/
+function toggleCollapseButton(event) {
+    var button = event.target.parentNode;
+    var content = button.parentNode.nextSibling;
+    var inner = content.children[0];
+
+    if (button.className.indexOf('collapse-button') === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
+
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        // Currently showing, so let's hide it
+        button.className = 'collapse-button';
+        content.style.maxHeight = '0px';
+    } else {
+        // Currently hidden, so let's show it
+        button.className = 'collapse-button show';
+        content.style.maxHeight = inner.offsetHeight + 12 + 'px';
+    }
+}
+
+function toggleTabButton(event) {
+    var i, index;
+    var button = event.target;
+
+    // Get index of the current button.
+    var buttons = childrenByClass(button.parentNode, 'tab-button');
+    for (i = 0; i < buttons.length; i++) {
+        if (buttons[i] === button) {
+            index = i;
+            button.className = 'tab-button active';
+        } else {
+            buttons[i].className = 'tab-button';
+        }
+    }
+
+    // Hide other tabs and show this one.
+    var tabs = childrenByClass(button.parentNode.parentNode, 'tab');
+    for (i = 0; i < tabs.length; i++) {
+        if (i === index) {
+            tabs[i].style.display = 'block';
+        } else {
+            tabs[i].style.display = 'none';
+        }
+    }
+}
+
+/*
+  Collapse or show a navigation menu. It will not be hidden unless it
+  is currently selected or `force` has been passed.
+*/
+function toggleCollapseNav(event, force) {
+    var heading = event.target.parentNode;
+    var content = heading.nextSibling;
+    var inner = content.children[0];
+
+    if (heading.className.indexOf('heading') === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
+
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+      // Currently showing, so let's hide it, but only if this nav item
+      // is already selected. This prevents newly selected items from
+      // collapsing in an annoying fashion.
+      if (force || window.location.hash && endsWith(event.target.href, window.location.hash)) {
+        content.style.maxHeight = '0px';
+      }
+    } else {
+      // Currently hidden, so let's show it
+      content.style.maxHeight = inner.offsetHeight + 12 + 'px';
+    }
+}
+
+/*
+  Refresh the page after a live update from the server. This only
+  works in live preview mode (using the `--server` parameter).
+*/
+function refresh(body) {
+    document.querySelector('body').className = 'preload';
+    document.body.innerHTML = body;
+
+    // Re-initialize the page
+    init();
+    autoCollapse();
+
+    document.querySelector('body').className = '';
+}
+
+/*
+  Determine which navigation items should be auto-collapsed to show as many
+  as possible on the screen, based on the current window height. This also
+  collapses them.
+*/
+function autoCollapse() {
+  var windowHeight = getWindowDimensions()[1];
+  var itemsHeight = 64; /* Account for some padding */
+  var itemsArray = Array.prototype.slice.call(
+    document.querySelectorAll('nav .resource-group .heading'));
+
+  // Get the total height of the navigation items
+  itemsArray.forEach(function (item) {
+    itemsHeight += item.parentNode.offsetHeight;
+  });
+
+  // Should we auto-collapse any nav items? Try to find the smallest item
+  // that can be collapsed to show all items on the screen. If not possible,
+  // then collapse the largest item and do it again. First, sort the items
+  // by height from smallest to largest.
+  var sortedItems = itemsArray.sort(function (a, b) {
+    return a.parentNode.offsetHeight - b.parentNode.offsetHeight;
+  });
+
+  while (sortedItems.length && itemsHeight > windowHeight) {
+    for (var i = 0; i < sortedItems.length; i++) {
+      // Will collapsing this item help?
+      var itemHeight = sortedItems[i].nextSibling.offsetHeight;
+      if ((itemsHeight - itemHeight <= windowHeight) || i === sortedItems.length - 1) {
+        // It will, so let's collapse it, remove its content height from
+        // our total and then remove it from our list of candidates
+        // that can be collapsed.
+        itemsHeight -= itemHeight;
+        toggleCollapseNav({target: sortedItems[i].children[0]}, true);
+        sortedItems.splice(i, 1);
+        break;
+      }
+    }
+  }
+}
+
+/*
+  Initialize the interactive functionality of the page.
+*/
+function init() {
+    var i, j;
+
+    // Make collapse buttons clickable
+    var buttons = document.querySelectorAll('.collapse-button');
+    for (i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = toggleCollapseButton;
+
+        // Show by default? Then toggle now.
+        if (buttons[i].className.indexOf('show') !== -1) {
+            toggleCollapseButton({target: buttons[i].children[0]});
+        }
+    }
+
+    var responseCodes = document.querySelectorAll('.example-names');
+    for (i = 0; i < responseCodes.length; i++) {
+        var tabButtons = childrenByClass(responseCodes[i], 'tab-button');
+        for (j = 0; j < tabButtons.length; j++) {
+            tabButtons[j].onclick = toggleTabButton;
+
+            // Show by default?
+            if (j === 0) {
+                toggleTabButton({target: tabButtons[j]});
+            }
+        }
+    }
+
+    // Make nav items clickable to collapse/expand their content.
+    var navItems = document.querySelectorAll('nav .resource-group .heading');
+    for (i = 0; i < navItems.length; i++) {
+        navItems[i].onclick = toggleCollapseNav;
+
+        // Show all by default
+        toggleCollapseNav({target: navItems[i].children[0]});
+    }
+}
+
+// Initial call to set up buttons
+init();
+
+window.onload = function () {
+    autoCollapse();
+    // Remove the `preload` class to enable animations
+    document.querySelector('body').className = '';
+};
+</script></body></html>

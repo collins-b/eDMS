@@ -1,0 +1,571 @@
+FORMAT: 1A
+HOST: https://edms-online.herokuapp.com
+
+# eDMS
+
+eDMS is a web app that handles documents.It allows you to manage your documents online
+
+API V1 https://github.com/andela-cwekesa/edms
+
+
+# Documentation guidelines
+
+eDMS being a RESTful API, it explicitly takes advantage of HTTP methodologies defined by the RFC 2616 protocol. It uses GET to retrieve a resource; PUT to change the state of or update a resource, which can be an object, file or block; POST to create that resource; and DELETE to remove it.
+
+All end-points have been authenticated but end-points for login,signup and fetching public documents.
+
+# User
+
+Resources related to users in the API
+
+
+### Create A New User [POST /api/user]
+
+This end-point creates a new user.A user provide his/her details.Fields are validated to prevent invalid data.For example password strength and email.
+
+The following credentials are mandatory:
+
++ First Name
++ Other Names
++ Phone Number
++ Email Address
++ Username
++ Password
+
+Note: Password need to be between 6-20 characters and contain at least one numeric,one uppercase and one lowercase letter.
+
++ Request (application/json)
+
+      {
+          "firstName": "Mimi",
+          "otherNames": "Mzuri",
+          "phone": "254722222222",
+          "email": "mimi@gmail.com",
+          "userName": "Colloto",
+          "password": "Collo20Qwerty",
+          "role": "user"
+      }
+
++ Response 200 (application/json)
+
+  + Body
+
+        {
+            "message": "You have successfully registered to eDMS!",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlck5hbWUiOiJtaW1pIiwicm9sZSI6InVzZXIiLCJpYXQiOjE0OTA4ODc5NTUsImV4cCI6MTQ5MTQ5Mjc1NX0.Or29TIfE-JnnC4nCAifDIo2rZIEIQLncDEFE4lU2Zho",
+            "Name": "Mzuri Mimi",
+            "Email": "mimi@gmail.com",
+            "Phone": "254722222222",
+            "userName": "mimi"
+        }
+
+### Login A User [POST /api/login]
+
+This endpoint serves to login existing users. It expects ```username``` and ``` password ```.
+
+
++ Request (application/json)
+
+        {
+            "userName": "Colloto",
+            "password": "Collo20Qwerty"
+        }
+
++ Response 200 (application/json)
+
+        {
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiSm9obiIsIm90aGVyTmFtZXMiOiJEb2UiLCJlbWFpbCI6ImpvaG5kb2VAbWljcm9oeXBlLmNvbSIsInBob25lIjoiMjU0NzAwMDAwMDAwIiwidXNlck5hbWUiOiJqb2huZG9lIiwicGFzc3dvcmQiOiIkMmEkMTAkRVZSYXU5UDNkSUpFa29CeFNZOE5DT1dyMWJDNnBhNUc4N0dLOURTWUI4V0FuOXVOLmFaMUMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVkQXQiOiIyMDE3LTAzLTI3VDEyOjM1OjEwLjYyNVoiLCJ1cGRhdGVkQXQiOiIyMDE3LTAzLTI3VDEyOjM1OjEwLjYyNVoiLCJpYXQiOjE0OTA4ODg2NjIsImV4cCI6MTQ5MTQ5MzQ2Mn0._Ab4Unh572T0DMx1-kUY3jj7O5F6kSx-4H6Bm5WmBzA"
+        }
+
+
+### User Logout [GET /api/logout]
+
+This endpoint logs out a user.The session ends/expires after this.
+
++ Response 200 (application/json)
+
+        {
+            "Message": "You have signed out successfully."
+        }
+
+
+### Active Users [GET /api/users/session]
+
+This endpoint allows admin to vcheck there are active/logged in users
+
++ Response 200
+
+      {
+        message: 'Active users available'
+      }
+
+### Users [GET /api/users]
+
+This endpoint fetches all users and displays user details
+
++ Response 200 (application/json)
+   [
+  {
+    "id": 1,
+    "firstName": "John",
+    "otherNames": "Doe",
+    "email": "johndoe@microhype.com",
+    "phone": "254700000000",
+    "userName": "johndoe",
+    "role": "admin",
+    "createdAt": "2017-03-27T12:35:10.625Z",
+    "updatedAt": "2017-03-27T12:35:10.625Z"
+  },
+  {
+    "id": 3,
+    "firstName": "Wecs",
+    "otherNames": "that",
+    "email": "wecs@microhype.com",
+    "phone": "254700000000",
+    "userName": "Collo",
+    "role": "admin",
+    "createdAt": "2017-03-27T12:35:14.151Z",
+    "updatedAt": "2017-03-27T12:35:14.932Z"
+  },
+  {
+    "id": 4,
+    "firstName": "React",
+    "otherNames": "Redux",
+    "email": "react@redux.com",
+    "phone": "254729508040",
+    "userName": "react",
+    "role": "user",
+    "createdAt": "2017-03-28T18:42:04.304Z",
+    "updatedAt": "2017-03-28T18:42:04.304Z"
+  },
+  {
+    "id": 5,
+    "firstName": "Yes",
+    "otherNames": "I can",
+    "email": "yes@yes.com",
+    "phone": "254729508040",
+    "userName": "qwerty",
+    "role": "user",
+    "createdAt": "2017-03-28T18:51:07.992Z",
+    "updatedAt": "2017-03-28T18:51:07.992Z"
+  },
+  {
+    "id": 7,
+    "firstName": "Mzuri",
+    "otherNames": "Mimi",
+    "email": "mimi@gmail.com",
+    "phone": "72443904",
+    "userName": "mimi",
+    "role": "user",
+    "createdAt": "2017-03-30T15:32:35.512Z",
+    "updatedAt": "2017-03-30T15:32:35.512Z"
+  }
+]
+
+### Users [GET /api/users/:id]
+
+This end point gets a specific user by id
+
++ Response 200 (application/json)
+
+   {
+      "id": 5,
+      "firstName": "Yes",
+      "otherNames": "I can",
+      "email": "yes@yes.com",
+      "phone": "254729508040",
+      "userName": "qwerty",
+      "password": null,
+      "role": "user",
+      "createdAt": "2017-03-28T18:51:07.992Z",
+      "updatedAt": "2017-03-28T18:51:07.992Z"
+  }
+
+### Users [GET /api/users/search]
+
+This endpoint searches a user by username
+
++ Response 200 (application/json)
+    [
+      {
+        "id": 7,
+        "firstName": "Mzuri",
+        "otherNames": "Mimi",
+        "email": "mimi@gmail.com",
+        "phone": "72443904",
+        "userName": "mimi",
+        "role": "user",
+        "createdAt": "2017-03-30T15:32:35.512Z",
+        "updatedAt": "2017-03-30T15:32:35.512Z"
+      }
+    ]
+
+### Users [PUT /api/users/:id]
+
+This endpoint updates a user's details
+
++ Response 200 (application/json)
+
+    {
+      "id": 5,
+      "firstName": "Yes",
+      "otherNames": "I can",
+      "email": "yes@yes.com",
+      "phone": "254729508040",
+      "userName": "Qwerty1",
+      "role": "user",
+      "createdAt": "2017-03-28T18:51:07.992Z",
+      "updatedAt": "2017-03-30T16:36:49.642Z"
+    }
+
+### Users [DELETE /api/users/:docId]
+
+This endpoint deletes a user
+
++ Response 204 (application/json)
+
+### Users [POST /api/forgot/:email]
+
+This endpoint allows users to recover their account by resetting password after forgetting.
+
++ Response 200 (appication/json)
+
+  { message: 'An auto-generated password has been send to your email address.Use it to login and change ASAP.' }
+
+# Documents
+
+Resources related to documents in the API
+
+### Documents [POST /api/users/:docId/documents]
+
+This endpoint allows user to create a document.Note: document title should be unique and not less than 5 characters
+
++ Response 200 (application/json)
+
+        {
+          "id": 9,
+          "title": "This is my  preparation yes my preparation",
+          "content": "So what can I tell you today about my preparation?",
+          "owner": "johndoe",
+          "role": "private",
+          "docId": 1,
+          "updatedAt": "2017-03-30T17:07:20.927Z",
+          "createdAt": "2017-03-30T17:07:20.927Z"
+       }
+
+### Documents [GET /api/documents]
+
+This endpoint finds matching instances of document.Note:public documents only
+
++ Response 200 (application/json)
+
+    [
+      {
+        "id": 7,
+        "title": "The Navbar and Login Components",
+        "content": "We should see if everything is wiring up properly in the browser at this point. But before we do, we'll need the ",
+        "owner": "react",
+        "role": "public",
+        "docId": 1,
+        "createdAt": "2017-03-28T21:38:20.674Z",
+        "updatedAt": "2017-03-28T21:38:20.674Z"
+      },
+      {
+        "id": 6,
+        "title": "How to Use Axios as Your HTTP Client communication",
+        "content": "How to Use Axios as Your HTTP Clients",
+        "owner": "Colloto",
+        "role": "public",
+        "docId": 3,
+        "createdAt": "2017-03-28T17:23:32.390Z",
+        "updatedAt": "2017-03-29T21:52:12.857Z"
+      },
+      {
+        "id": 5,
+        "title": "Persistent Login Topic In Action Now",
+        "content": "So far we have just used the default route provided by Express for an SPA application, and not defined any route handling for Express",
+        "owner": "test",
+        "role": "public",
+        "docId": 3,
+        "createdAt": "2017-03-27T19:48:03.852Z",
+        "updatedAt": "2017-03-27T19:48:03.852Z"
+      },
+      {
+        "id": 3,
+        "title": "Components and Props in react Tutorial that I want share here today.",
+        "content": "Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.\n  This is cool, right?You are going to love React.",
+        "owner": "johndoe",
+        "role": "public",
+        "docId": 1,
+        "createdAt": "2017-03-27T12:35:13.392Z",
+        "updatedAt": "2017-03-27T12:35:13.392Z"
+      }
+    ]
+
+### Documents [GET /api/documents/myDocuments]
+- This endpoint finds owner's documents
+
++ Response 200 (application/json)
+
+    [
+      {
+        "id": 9,
+        "title": "This is my  preparation yes my preparation",
+        "content": "So what can I tell you today about my preparation?",
+        "owner": "johndoe",
+        "role": "private",
+        "docId": 1,
+        "createdAt": "2017-03-30T17:07:20.927Z",
+        "updatedAt": "2017-03-30T17:07:20.927Z"
+      },
+      {
+        "id": 3,
+        "title": "Components and Props in react Tutorial that I want share here today.",
+        "content": "Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.\n  This is cool, right?You are going to love React.",
+        "owner": "johndoe",
+        "role": "public",
+        "docId": 1,
+        "createdAt": "2017-03-27T12:35:13.392Z",
+        "updatedAt": "2017-03-27T12:35:13.392Z"
+      }
+    ]
+
+### Documents [POST /api/documents/private]
+- This endpoint lists owner's private documents only.Note and admin can access all private documents
+
++ Response 200 (application/json)
+    [
+      {
+        "id": 9,
+        "title": "This is my  preparation yes my preparation",
+        "content": "So what can I tell you today about my preparation?",
+        "owner": "johndoe",
+        "role": "private",
+        "docId": 1,
+        "createdAt": "2017-03-30T17:07:20.927Z",
+        "updatedAt": "2017-03-30T17:07:20.927Z"
+      },
+      {
+        "id": 8,
+        "title": "Creating a Higher Order Component",
+        "content": "We are going to create a higher order component, which will allow us pass some functionality down to ",
+        "owner": "react",
+        "role": "private",
+        "docId": 1,
+        "createdAt": "2017-03-28T21:49:51.997Z",
+        "updatedAt": "2017-03-28T21:49:51.997Z"
+      }
+    ]
+
+### Documents [POST /api/documents/search]
+- This performs a global search against document
+
++ Response 200 (application/json)
+    [
+      {
+        "id": 7,
+        "title": "The Navbar and Login Components",
+        "content": "We should see if everything is wiring up properly in the browser at this point. But before we do, we'll need the ",
+        "owner": "react",
+        "role": "public",
+        "docId": 1,
+        "createdAt": "2017-03-28T21:38:20.674Z",
+        "updatedAt": "2017-03-28T21:38:20.674Z"
+      },
+      {
+        "id": 3,
+        "title": "Components and Props in react Tutorial that I want share here today.",
+        "content": "Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.\n  This is cool, right?You are going to love React.",
+        "owner": "johndoe",
+        "role": "public",
+        "docId": 1,
+        "createdAt": "2017-03-27T12:35:13.392Z",
+        "updatedAt": "2017-03-27T12:35:13.392Z"
+      }
+    ]
+This is a response for ```components```
+
+### Documents [POST /api/documents/title]
+- Searches against documents (search by title)
+
++ Response 200 (application/json)
+
+  [
+    {
+      "id": 7,
+      "title": "The Navbar and Login Components",
+      "content": "We should see if everything is wiring up properly in the browser at this point. But before we do, we'll need the ",
+      "owner": "react",
+      "role": "public",
+      "docId": 1,
+      "createdAt": "2017-03-28T21:38:20.674Z",
+      "updatedAt": "2017-03-28T21:38:20.674Z"
+    }
+  ]
+
+This is a response for ```Navbar```
+
+### Documents [GET /api/documents/:id]
+
+-  Find a specific document.
+
++ Response 200 (application/json)
+
+  {
+    "id": 7,
+    "title": "The Navbar and Login Components",
+    "content": "We should see if everything is wiring up properly in the browser at this point. But before we do, we'll need the ",
+    "owner": "react",
+    "role": "public",
+    "docId": 1,
+    "createdAt": "2017-03-28T21:38:20.674Z",
+    "updatedAt": "2017-03-28T21:38:20.674Z"
+  }
+
+### Documents [PUT /api/documents/:id]
+
+- Update document attributes.
+
++ Response 200 (application/json)
+
+  {
+    "id": 7,
+    "title": "The Navbar and Login Components that I want share today.",
+    "content": "We should see if everything is wiring up properly in the browser at this point. But before we do, we'll need the ",
+    "owner": "react",
+    "role": "public",
+    "docId": 1,
+    "createdAt": "2017-03-28T21:38:20.674Z",
+    "updatedAt": "2017-03-28T21:38:20.674Z"
+  }
+
+### Documents [DELETE /api/documents/:id]
+
+- Delete a specific document
+
++ Response 204 (application/json)
+
+### Documents [GET /api/users/:docId/documents]
+- Find all documents belonging to the user.
+
++ Response 200 (application/json)
+
+    {
+      "id": 1,
+      "firstName": "John",
+      "otherNames": "Doe",
+      "email": "johndoe@microhype.com",
+      "phone": "254700000000",
+      "userName": "johndoe",
+      "role": "admin",
+      "createdAt": "2017-03-27T12:35:10.625Z",
+      "updatedAt": "2017-03-27T12:35:10.625Z",
+      "documents": [
+        {
+          "id": 3,
+          "title": "Components and Props in react Tutorial that I want share here today.",
+          "content": "Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.\n  This is cool, right?You are going to love React.",
+          "owner": "johndoe",
+          "role": "public",
+          "docId": 1,
+          "createdAt": "2017-03-27T12:35:13.392Z",
+          "updatedAt": "2017-03-27T12:35:13.392Z"
+        },
+        {
+          "id": 9,
+          "title": "This is my  preparation yes my preparation",
+          "content": "So what can I tell you today about my preparation?",
+          "owner": "johndoe",
+          "role": "private",
+          "docId": 1,
+          "createdAt": "2017-03-30T17:07:20.927Z",
+          "updatedAt": "2017-03-30T17:07:20.927Z"
+        }
+      ]
+    }
+
+# Roles
+
+Resources related to roles
+
+### Roles [POST /api/roles]
+
+- Creates a new role
+
++ Response 200 (application/json)
+
+    [
+      {
+        "id": 2,
+        "title": "User",
+        "accessLevel": 2,
+        "createdAt": "2017-03-27T12:35:10.643Z",
+        "updatedAt": "2017-03-27T12:35:10.643Z"
+      }
+    ]
+
+### Roles [GET /api/roles]
+
+- Displays all roles
+
++ Response 200 (application/json)
+
+    [
+      {
+        "id": 2,
+        "title": "User",
+        "accessLevel": 2,
+        "createdAt": "2017-03-27T12:35:10.643Z",
+        "updatedAt": "2017-03-27T12:35:10.643Z"
+      },
+      {
+        "id": 3,
+        "title": "Admin",
+        "accessLevel": 1,
+        "createdAt": "2017-03-27T12:35:10.643Z",
+        "updatedAt": "2017-03-27T12:35:10.643Z"
+      },
+      {
+        "id": 5,
+        "title": "Guest",
+        "accessLevel": 3,
+        "createdAt": "2017-03-27T12:35:13.770Z",
+        "updatedAt": "2017-03-27T12:35:13.770Z"
+      },
+    ]
+
+### Displays a specific role
+
+- Displays a specific role.For example role with id 2 is:
+
++ Response 200 (application/json)
+  [
+        {
+          "id": 2,
+          "title": "User",
+          "accessLevel": 2,
+          "createdAt": "2017-03-27T12:35:10.643Z",
+          "updatedAt": "2017-03-27T12:35:10.643Z"
+        }
+  ]
+
+### Updates a specific role
+
+- Update a specific role by id.For example role with id 2 after update is:
+
++ Response 200 (application/json)
+  [
+        {
+          "id": 2,
+          "title": "User",
+          "accessLevel": 4,
+          "createdAt": "2017-03-27T12:35:10.643Z",
+          "updatedAt": "2017-03-27T12:35:10.643Z"
+        }
+  ]
+
+### Deletes a specific role
+
+- Deletes a role by id.
+
++ Response 204 (application/json)
